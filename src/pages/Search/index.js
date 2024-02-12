@@ -45,7 +45,7 @@ export default function Search() {
                                 );
                             }).map((item, index) => (
 
-                                <TouchableOpacity onPress={() => navigation.navigate("Login")} key={item.id}>
+                                <TouchableOpacity onPress={() => navigation.navigate("SignUp")} key={item.id}>
                                     
                                     <View style={styles.searchArea}>
                                         <Text style={styles.institutionName}>{item.institutionName}</Text>
@@ -61,7 +61,7 @@ export default function Search() {
                     </ScrollView>
                     <TouchableOpacity
                         style={styles.registrationButton}
-                        onPress={() => navigation.navigate("Search")}
+                        onPress={() => navigation.navigate("SignUp")}
                     >
                         <Text style={styles.buttonText}>Não localizou, cadastre aqui!!</Text>
 
