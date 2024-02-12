@@ -25,7 +25,8 @@ export default function App() {
 // Pacotes instalados
 // npx expo install expo-localization
 // expo install @react-navigation/bottom-tabs
-
+// expo install @react-navigation/native
+//  expo install react-native-animatable
 
 
 // cor amarela usada: #f3d00f
