@@ -106,8 +106,8 @@ const styles = StyleSheet.create({
     },
     input: {
         borderBottomWidth: 1,
-        height: 40,
-        marginBottom: 12,
+        height: 30,
+        marginBottom: 3,
         fontSize: 16
     },
     searchArea: {

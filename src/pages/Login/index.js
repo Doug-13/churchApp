@@ -32,6 +32,7 @@ export default function Login() {
 
           <Text style={styles.title}>Senha</Text>
           <TextInput
+            secureTextEntry={true}
             placeholder="Digite sua senha..."
             style={styles.input} />
 
@@ -65,21 +66,21 @@ const styles = StyleSheet.create({
     paddingStart: '5%',
   },
   welcome:{
-    fontSize:28,
+    fontSize:30,
     fontWeight:'bold',
     color: '#000000',
     alignItems: 'center',
   },
   image: {
-    width: 380,
-    height: 380,
+    width: 300,
+    height: 180,
     borderRadius: 20,
   },
   containerForm: {
     backgroundColor: '#fff',
-    flex: 1,
-    borderTopLeftRadius:25,
-    borderTopRightRadius:25,
+    flex: 2,
+    borderTopLeftRadius:18,
+    borderTopRightRadius:18,
     paddingStart:'5%',
     paddingEnd:'5%'
   },
@@ -89,8 +90,8 @@ const styles = StyleSheet.create({
   },
   input:{
     borderBottomWidth:1,
-    height:40,
-    marginBottom:12,
+    height:30,
+    marginBottom: 10,
     fontSize:16
   },
   button: {
@@ -98,7 +99,7 @@ const styles = StyleSheet.create({
     width:'100%',
     borderRadius:6,
     paddingVertical:8,
-    marginTop:14,
+    marginTop:40,
     justifyContent:'center',
     alignItems:'center'
   },
@@ -108,7 +109,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold'
   },
   buttonRegister:{
-    marginTop:14,
+    marginTop:3,
     alignSelf:'center'
   },
   registerText:{

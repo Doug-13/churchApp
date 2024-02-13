@@ -1,10 +1,13 @@
 import React from "react";
-import { SafeAreaView, View, StyleSheet, Text } from "react-native";
+import {SafeAreaView, View, StyleSheet, Text } from "react-native";
+import Checkbox from '../src/components/Checkbox';
 
 const CheckBoxPage = () => {
+    const optionsindividual = [{ text:'Li e concordo', id:1}];
     return(
-        <SafeAreaView style={Styles.container}>
-        <CheckBox options ></CheckBox>
+        <SafeAreaView style={styles.container}>
+        <text style={styles.title}>CheckBox individual</text>
+        <Checkbox options={optionsindividual} onChange={(op) => alert(op)} />
         <Text style={styles.title}>Li e concordo com os termos</Text>
         </SafeAreaView>
     );
@@ -24,4 +27,4 @@ const styles = StyleSheet.create({
 
     }
 });
-export default CheckBoxPage
+export default CheckBoxPage;

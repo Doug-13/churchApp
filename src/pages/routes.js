@@ -8,6 +8,7 @@ import MainScreen from './MainScreen';
 import AboutUs from './AboutUs';
 import Profile from './Profile';
 import SignUp from './SignUp';
+import ChurchRegister from './ChurchRegister';
 
 const Stack = createNativeStackNavigator();
 
@@ -48,9 +49,14 @@ export default function Routes() {
         component={Profile}
       />
 
-<Stack.Screen
+      <Stack.Screen
         name="SignUp"
         component={SignUp}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="ChurchRegister"
+        component={ChurchRegister}
         options={{ headerShown: false }}
       />
     </Stack.Navigator>

@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#f3d00f",
     marginTop: '14%',
     marginBottom: "8%",
-    paddingStart: '5%',
+    // paddingStart: '5%', 
   },
   containerForm: {
     flex: 1,
@@ -61,7 +61,8 @@ const styles = StyleSheet.create({
   image: {
     width: 380,
     height: 380,
-    borderRadius: 20,
+    borderRadius: 20
+
   },
   slogan: {
     marginTop: 10, // Ajuste conforme necessário
@@ -72,7 +73,7 @@ const styles = StyleSheet.create({
     // fontWeight: 'bold',
     paddingLeft: '5%',
     paddingRight: '5%',
-    textAlign: 'justify'
+    textAlign: 'center'
   },
   button: {
     // position: 'relative',

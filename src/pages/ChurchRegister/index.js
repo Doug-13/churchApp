@@ -6,7 +6,7 @@ import * as Animatable from 'react-native-animatable';
 //import CheckBoxPage from '../../components/checkBox';
 
 
-export default function SignUp() {
+export default function ChurchRegister() {
     const navigation = useNavigation();
     return (
         <View style={styles.container}>
@@ -25,14 +25,14 @@ export default function SignUp() {
                 <View style={styles.containerForm}>
 
                     <StatusBar style="auto" />
-                    <Text style={styles.title}>Nome</Text>
+                    <Text style={styles.title}>Nome da instituição</Text>
                     <TextInput
-                        placeholder="Digite seu nome..."
+                        placeholder="Digite o nome da instituição..."
                         style={styles.input} />
 
-                    <Text style={styles.title}>Sobrenome</Text>
+                    <Text style={styles.title}>Cidade</Text>
                     <TextInput
-                        placeholder="Digite seu sobrenome..."
+                        placeholder="Digite a cidade..."
                         style={styles.input} />
 
                     <Text style={styles.title}>Email</Text>
@@ -51,16 +51,22 @@ export default function SignUp() {
                         secureTextEntry={true}
                         placeholder="Digite sua senha..."
                         style={styles.input} />
-                        
-                     </View>
 
-                     <TouchableOpacity
-          style={styles.button}
-          onPress={() => navigation.navigate("ChurchRegister")}
-        >
-          <Text style={styles.buttonText}>Sign in</Text>
-       
-        </TouchableOpacity>
+                    <TouchableOpacity
+                        style={styles.button}
+                    // onPress={() => navigation.navigate("")}
+                    >
+                        <Text style={styles.buttonText}>Register</Text>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity
+                        style={styles.buttonRegister}
+                        onPress={() => navigation.navigate("MainScreen")}
+                    >
+                    
+                    </TouchableOpacity>
+
+                </View>
 
 
             </Animatable.View>
@@ -102,11 +108,11 @@ const styles = StyleSheet.create({
     },
     title: {
         fontSize: 18,
-        marginTop: 12
+        marginTop: 8
     },
     input: {
         borderBottomWidth: 1,
-        height: 20, // ajuste a altura conforme necessário
+        height: 18, // ajuste a altura conforme necessário
         marginBottom: 16,
         fontSize: 16,
     },
@@ -114,8 +120,8 @@ const styles = StyleSheet.create({
         backgroundColor: '#000000',
         width: '100%',
         borderRadius: 6,
-        paddingVertical: 6,
-        marginTop: 20,
+        paddingVertical: 8,
+        marginTop: 10,
         justifyContent: 'auto',
         alignItems: 'center'
     },
