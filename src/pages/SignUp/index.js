@@ -5,6 +5,7 @@ import { useNavigation } from '@react-navigation/native';
 import * as Animatable from 'react-native-animatable';
 import CheckBoxPage from '../../components/checkBox';
 
+
 export default function SignUp() {
     const navigation = useNavigation();
     return (
