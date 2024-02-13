@@ -4,6 +4,7 @@ import { StyleSheet, Text, View, TouchableOpacity, TextInput, Image } from 'reac
 import { useNavigation } from '@react-navigation/native';
 import * as Animatable from 'react-native-animatable'
 
+
 export default function SignUp() {
     const navigation = useNavigation();
     return (

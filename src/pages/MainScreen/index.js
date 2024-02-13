@@ -18,10 +18,21 @@ export default function MainScreen() {
         <StatusBar style="auto" />
 
         <Text style={styles.churchName}>Mevam</Text>
-        <Text style={styles.title}>Agenda</Text>
-        <View style={styles.containerSchedule}>
-         
+        <View style={styles.schedule}>
+          <Text style={styles.scheduleTitle}>Agenda</Text>
         </View>
+        <View style={styles.containerSchedule}>
+
+          <Text style={styles.textStyle}>17/02/2024 - Culto da família</Text>
+          <Text style={styles.textStyle}>18/02/2024 - Culto de Oração</Text>
+          <Text style={styles.textStyle}>22/02/2024 - Santa Ceia</Text>
+          <Text style={styles.textStyle}>24/02/2024 - Culto de Libertação</Text>
+          <Text style={styles.textStyle}>25/02/2024 - Culto da família</Text>
+        </View>
+        <View>
+          <Text>Aniversariantes do mês</Text>
+        </View>
+
       </View>
     </View>
   );
@@ -31,13 +42,16 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#f3d00f",
-    justifyContent: 'center',
-    alignItems: 'center',
   },
-  title: {
-    fontSize: 20,
+  schedule: {
     marginTop: 28,
-    alignItems: 'center'
+    fontWeight: 'bold',
+    textAlign: 'left',
+    width: '100%',
+  },
+  scheduleTitle: {
+    fontSize: 25,
+    fontWeight: 'bold',
   },
   boxContainer: {
     flex: 1,
@@ -61,19 +75,30 @@ const styles = StyleSheet.create({
     borderRadius: 350 / 2,
     borderColor: '#f3d00f',
     // border:3
-    marginTop: -60
+    marginTop: -60,
   },
   churchName: {
     fontSize: 30,
-    marginTop: 20
+    marginTop: 10,
+    marginBottom: 20,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
-  containerSchedule:{
+  containerSchedule: {
     flex: 1,
     backgroundColor: "#F0FFFF",
-    width:'100%',
-    height:'20%',
-    borderColor:'#0000'
+    width: '100%',
+    height: '20%',
+    borderColor: '#0000'
     // border
+
+  },
+  textStyle: {
+    fontSize: 15,
+    marginTop: 10,
+
+    justifyContent: 'center',
+    alignItems: 'center',
 
   }
 })
