@@ -66,12 +66,13 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: "#f3d00f",
+        alignItems: 'center',
     },
     containerHeader: {
         flex: 1,
         marginTop: '14%',
         marginBottom: "8%",
-        paddingStart: '5%',
+        // paddingStart: '5%',
     },
     welcome: {
         fontSize: 28,
@@ -90,7 +91,8 @@ const styles = StyleSheet.create({
         borderTopLeftRadius: 25,
         borderTopRightRadius: 25,
         paddingStart: '5%',
-        paddingEnd: '5%'
+        paddingEnd: '5%',
+        width:'95%', //ajusta a largura do container
     },
     title: {
         fontSize: 20,

@@ -37,22 +37,17 @@ export default function Login() {
 
           <TouchableOpacity
             style={styles.button}
-          // onPress={() => navigation.navigate("")}
+          onPress={() => navigation.navigate("MainScreen")}
           >
             <Text style={styles.buttonText}>Acessar</Text>
           </TouchableOpacity>
 
           <TouchableOpacity
             style={styles.buttonRegister}
-            onPress={() => navigation.navigate("Search")}
-          >
-            <Text style={styles.buttonRegister}>Não possui uma conta? Cadastre-se</Text>
-            
+            onPress={() => navigation.navigate("Search")}          >
+            <Text style={styles.buttonRegister}>Não possui uma conta? Cadastre-se</Text> 
           </TouchableOpacity>
-
         </View>
-        
-
       </Animatable.View>
     </View>
   );

@@ -4,7 +4,7 @@ import { StyleSheet, Text, View, TouchableOpacity, TextInput,Image } from 'react
 
 
 
-export default function Login() {
+export default function Profile() {
   return (
     <View style={styles.container}>
       
