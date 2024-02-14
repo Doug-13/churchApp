@@ -1,15 +1,15 @@
-import React from "react";
-import {View} from 'react-native';
+// import React from "react";
+// import {Text, View, StyleSheet} from 'react-native';
 
 
-const CheckBox = ({options = [], onChange}) => {
-    return (<View>
-        {options.map((op, index) => (
-            <text>{op?.text}</text>
+// const CheckBox = ({options = [], onChange}) => {
+//     return (<View>
+//         {options.map((op, index) => (
+//             <Text>{op?.text}</Text>
 
-        ))}
-        </View>
-    );
-};
+//         ))}
+//         </View>
+//     );
+// };
 
-export default CheckBox;
+// export default CheckBox;

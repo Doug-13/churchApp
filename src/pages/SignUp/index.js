@@ -102,12 +102,12 @@ const styles = StyleSheet.create({
     },
     title: {
         fontSize: 18,
-        marginTop: 12
+        marginTop: 8
     },
     input: {
         borderBottomWidth: 1,
         height: 20, // ajuste a altura conforme necessário
-        marginBottom: 16,
+        marginBottom: 14,
         fontSize: 16,
     },
     button: {
@@ -115,8 +115,8 @@ const styles = StyleSheet.create({
         width: '100%',
         borderRadius: 6,
         paddingVertical: 6,
-        marginTop: 20,
-        justifyContent: 'auto',
+        marginTop: 18,
+        justifyContent: 'center',
         alignItems: 'center'
     },
     buttonText: {

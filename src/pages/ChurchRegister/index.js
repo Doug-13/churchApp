@@ -54,17 +54,17 @@ export default function ChurchRegister() {
 
                     <TouchableOpacity
                         style={styles.button}
-                    // onPress={() => navigation.navigate("")}
+                     onPress={() => navigation.navigate("MainScreen")}
                     >
                         <Text style={styles.buttonText}>Register</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity
+                    {/* <TouchableOpacity
                         style={styles.buttonRegister}
-                        onPress={() => navigation.navigate("MainScreen")}
+                        onPress={() => navigation.navigate("")}
                     >
                     
-                    </TouchableOpacity>
+                    </TouchableOpacity> */}
 
                 </View>
 
@@ -112,7 +112,7 @@ const styles = StyleSheet.create({
     },
     input: {
         borderBottomWidth: 1,
-        height: 18, // ajuste a altura conforme necessário
+        height: 20, // ajuste a altura conforme necessário
         marginBottom: 16,
         fontSize: 16,
     },
@@ -120,9 +120,9 @@ const styles = StyleSheet.create({
         backgroundColor: '#000000',
         width: '100%',
         borderRadius: 6,
-        paddingVertical: 8,
-        marginTop: 10,
-        justifyContent: 'auto',
+        paddingVertical: 6,
+        marginTop: 18,
+        justifyContent: 'center',
         alignItems: 'center'
     },
     buttonText: {
