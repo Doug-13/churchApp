@@ -21,7 +21,7 @@ export default function Home() {
       <View style={styles.containerForm}>
         <StatusBar style="false" />
         <View style={styles.slogan}>
-          <Text style={styles.sloganText}>"Inspirando Comunhão, Fortalecendo Vínculos: Sua Igreja na Ponta dos Dedos."</Text>
+          <Text style={styles.sloganText}>"Inspirando Comunhão, Fortalecendo Vínculos: A Gestão de sua igreja na palma da mão."</Text>
         </View>
         <TouchableOpacity
           style={styles.button}
@@ -44,7 +44,8 @@ const styles = StyleSheet.create({
     backgroundColor: "#f3d00f",
     marginTop: '14%',
     marginBottom: "8%",
-    // paddingStart: '5%', 
+    justifyContent: 'center', // Centraliza verticalmente
+    alignItems: 'center', // Centraliza horizontalmente
   },
   containerForm: {
     flex: 1,
@@ -62,7 +63,6 @@ const styles = StyleSheet.create({
     width: 380,
     height: 380,
     borderRadius: 20
-
   },
   slogan: {
     marginTop: 10, // Ajuste conforme necessário
@@ -76,15 +76,11 @@ const styles = StyleSheet.create({
     textAlign: 'center'
   },
   button: {
-    // position: 'relative',
     backgroundColor: '#000000',
     borderRadius: 6,
     paddingVertical: 8,
     width: '90%',
-    // alignSelf: 'center',
-    // bottom: '15%',
     alignItems: 'center',
-    // justifyContent: 'center'
   },
   buttonText: {
     fontSize: 19,

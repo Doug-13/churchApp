@@ -1,56 +1,59 @@
 import React from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, TouchableOpacity, TextInput,Image } from 'react-native';
+import { Platform, KeyboardAvoidingView, View, Text, TouchableOpacity, TextInput, Image, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-
-import * as Animatable from 'react-native-animatable'
+import * as Animatable from 'react-native-animatable';
 
 export default function Login() {
   const navigation = useNavigation();
   return (
-    <View style={styles.container}>
-      <Animatable.View animation='fadeInLeft' delay={500} style={styles.containerHeader}>
-        <Text style={styles.welcome}> Seja Bem Vindo(a)</Text>
-        <Image
-          source={require('../../../assets/Logo.png')}
-          style={styles.image}
-          resizeMode="contain"
-        />
-      </Animatable.View>
-
+    <KeyboardAvoidingView
+      style={styles.container}
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+      keyboardVerticalOffset={Platform.OS === 'ios' ? 0 : 20}
+    >
+      <View style={styles.containerHeader}>
+        <Animatable.Text animation='fadeInLeft' delay={500} style={styles.welcome}>Seja Bem Vindo(a)</Animatable.Text>
+        <Animatable.View animation='fadeInRight' delay={100} style={styles.imageContainer}>
+          <Image
+            source={require('../../../assets/Logo.png')}
+            style={styles.image}
+            resizeMode="contain"
+          />
+       </Animatable.View>
+      </View>
 
       <Animatable.View animation='fadeInUp' delay={500} style={styles.containerForm}>
+        <StatusBar style="auto" />
 
-        <View style={styles.containerForm}>
+        <Text style={styles.title}>Email</Text>
+        <TextInput
+          placeholder="Digite seu E-mail..."
+          style={styles.input}
+        />
 
-          <StatusBar style="auto" />
+        <Text style={styles.title}>Senha</Text>
+        <TextInput
+          secureTextEntry={true}
+          placeholder="Digite sua senha..."
+          style={styles.input}
+        />
 
-          <Text style={styles.title}>Email</Text>
-          <TextInput
-            placeholder="Digite seu E-mail..."
-            style={styles.input} />
-
-          <Text style={styles.title}>Senha</Text>
-          <TextInput
-            secureTextEntry={true}
-            placeholder="Digite sua senha..."
-            style={styles.input} />
-
-          <TouchableOpacity
-            style={styles.button}
+        <TouchableOpacity
+          style={styles.button}
           onPress={() => navigation.navigate("MainScreen")}
-          >
-            <Text style={styles.buttonText}>Acessar</Text>
-          </TouchableOpacity>
+        >
+          <Text style={styles.buttonText}>Acessar</Text>
+        </TouchableOpacity>
 
-          <TouchableOpacity
-            style={styles.buttonRegister}
-            onPress={() => navigation.navigate("Search")}          >
-            <Text style={styles.buttonRegister}>Não possui uma conta? Cadastre-se</Text> 
-          </TouchableOpacity>
-        </View>
+        <TouchableOpacity
+          style={styles.buttonRegister}
+          onPress={() => navigation.navigate("Search")}
+        >
+          <Text style={styles.buttonRegister}>Não possui uma conta? Cadastre-se</Text>
+        </TouchableOpacity>
       </Animatable.View>
-    </View>
+    </KeyboardAvoidingView>
   );
 }
 
@@ -60,16 +63,20 @@ const styles = StyleSheet.create({
     backgroundColor: "#f3d00f",
   },
   containerHeader: {
-    flex: 1,
     marginTop: '14%',
     marginBottom: "8%",
     paddingStart: '5%',
+    justifyContent: 'center', // Centraliza verticalmente
+    alignItems: 'center', // Centraliza horizontalmente
   },
-  welcome:{
-    fontSize:30,
-    fontWeight:'bold',
-    color: '#000000',
-    alignItems: 'center',
+  welcome: {
+  fontSize: 30,
+  fontWeight: 'bold',
+  color: '#000000',
+  marginVertical: 8, // Adiciona espaço vertical entre o texto e a imagem
+},
+  imageContainer: {
+    alignItems: 'center', // Centraliza horizontalmente
   },
   image: {
     width: 300,
@@ -79,49 +86,40 @@ const styles = StyleSheet.create({
   containerForm: {
     backgroundColor: '#fff',
     flex: 2,
-    borderTopLeftRadius:18,
-    borderTopRightRadius:18,
-    paddingStart:'5%',
-    paddingEnd:'5%'
+    borderTopLeftRadius: 18,
+    borderTopRightRadius: 18,
+    paddingStart: '5%',
+    paddingEnd: '5%'
   },
-  title:{
-    fontSize:20,
-    marginTop:28
+  title: {
+    fontSize: 20,
+    marginTop: 28
   },
-  input:{
-    borderBottomWidth:1,
-    height:30,
+  input: {
+    borderBottomWidth: 1,
+    height: 30,
     marginBottom: 10,
-    fontSize:16
+    fontSize: 16
   },
   button: {
     backgroundColor: '#000000',
-    width:'100%',
-    borderRadius:6,
-    paddingVertical:8,
-    marginTop:40,
-    justifyContent:'center',
-    alignItems:'center'
+    width: '100%',
+    borderRadius: 6,
+    paddingVertical: 8,
+    marginTop: 40,
+    justifyContent: 'center',
+    alignItems: 'center'
   },
   buttonText: {
     fontSize: 19,
     color: '#ffff',
     fontWeight: 'bold'
   },
-  buttonRegister:{
-    marginTop:3,
-    alignSelf:'center'
+  buttonRegister: {
+    marginTop: 3,
+    alignSelf: 'center'
   },
-  registerText:{
-    color:'#000000',
+  registerText: {
+    color: '#000000',
   }
-
-
 });
-
-
-
-// export default App;
-
-// Site do logo
-// https://smashinglogo.com/pt/quick-edit?s=laqwspmns-y5yfxqe2l#slogan-text

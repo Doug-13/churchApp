@@ -23,7 +23,20 @@ git status, conferir se ficou ok
  expo install @react-navigation/bottom-tabs
  expo install @react-navigation/native
  expo install react-native-animatable
+ npx expo install expo-image-picker - para trabalhar com imagens
+ npm install @expo/vector-icons - para usar ícones (menu hamburguer)
+ npx expo install react-native-gesture-handler (para passar páginas com arrasto)
 
 
-# cor amarela usada: #f3d00f
-# cor Preta usada: #000000
+# cor amarela usada: '#f3d00f'
+# cor Preta usada: '#000000'
+    
+npm cache clean --force
+npm start -- --reset-cache
+
+# Pesquisar sobre "bottom tabs"
+# Pesquisar sobre menu lateral em react native
+# Fazer um teste para criar um documento na aplicação
+ - react-native-pell-rich-editor
+ - https://www.npmjs.com/package/react-native-pell-rich-editor
+ - https://www.geeksforgeeks.org/create-a-text-editor-app-using-react-native/
