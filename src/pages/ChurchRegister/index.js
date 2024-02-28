@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { SafeAreaView, StatusBar, Platform, KeyboardAvoidingView, View, Text, TouchableOpacity, TextInput, Image, ScrollView, StyleSheet, Alert } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import * as Animatable from 'react-native-animatable';
-import CheckBox from '../../components/CheckBox/CheckBox2/index';
+import CheckBox from '../../components/CheckBox2/index';
 import * as ImagePicker from 'expo-image-picker';
 
 export default function ChurchRegister() {

@@ -40,7 +40,9 @@ const MenuScreen = () => {
       case 'Profile': // Handle the 'Profile' button
         navigation.navigate('Profile'); // Navigate to the 'Profile' screen
         break;
-      // Add cases for other buttons as needed
+        case 'Peoples': // Handle the 'Profile' button
+        navigation.navigate('Peoples'); // Navigate to the 'Profile' screen
+        break;
       default:
         break;
     }
@@ -81,7 +83,7 @@ const MenuScreen = () => {
         {/* Outros botões do menu */}
         <TouchableOpacity
           style={[styles.menuItem, selectedButton === 'Pessoas' && styles.selectedButton]}
-          onPress={() => handleButtonPress('Pessoas')}
+          onPress={() => handleButtonPress('Peoples')}
         >
           <Text style={[styles.menuText, selectedButton === 'Pessoas' && styles.selectedButtonText]}>Pessoas</Text>
         </TouchableOpacity>
@@ -148,8 +150,10 @@ const MenuScreen = () => {
         >
           <Text style={[styles.menuText, selectedButton === 'Configurações' && styles.selectedButtonText]}>Configurações</Text>
         </TouchableOpacity>
+
+
         <TouchableOpacity style={styles.logoutButton}>
-          <Text style={styles.logoutText}>LogOut</Text>
+          <Text style={styles.logoutText}>SAIR</Text>
         </TouchableOpacity>
         </ScrollView>
     </Animatable.View>
@@ -204,13 +208,14 @@ const styles = StyleSheet.create({
     fontSize: 18,
   },
   logoutButton: {
-    position: 'absolute',
-    bottom: 20,
-    left: 20,
+    // marginLeft: 20,
+    marginTop: 10,
+    // backgroundColor:'red'
   },
   logoutText: {
     fontSize: 18,
-    color: 'red',
+    // color: 'red',
+    fontWeight: 'bold',
   },
 });
 

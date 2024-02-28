@@ -1,13 +1,38 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, TouchableOpacity, Image, ScrollView, Dimensions, KeyboardAvoidingView, Platform } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, Image, ScrollView, Dimensions, KeyboardAvoidingView, Platform,FlatList } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
+import Events from '../Schedule/events.json';
+
 
 const windowHeight = Dimensions.get('window').height;
 
 export default function MainScreen() {
   const navigation = useNavigation();
+
+
+
+  const [events, setEvents] = useState([]);
+
+  useEffect(() => {
+    // Filtrando os eventos da igreja 2
+    const churchEvents = Events.filter(event => event.church === 3);
+    setEvents(churchEvents);
+  }, []);
+
+  // Função para renderizar cada item da lista
+  const renderItem = ({ item }) => (
+    <View style={styles.item}>
+      <View style={styles.eventDetails}>
+        <Text style={styles.title}>Evento: {item.NameEvent}</Text>
+        <Text style={styles.date}>Data: {item.InitDate}</Text>
+        <Text style={styles.subtitle}>Hora: {item.Hour}</Text>
+      </View>
+    </View>
+  );
+
+
   return (
     <KeyboardAvoidingView
       style={styles.container}
@@ -40,21 +65,18 @@ export default function MainScreen() {
               <Text style={styles.scheduleTitle}>Agenda</Text>
             </View>
             <ScrollView nestedScrollEnabled style={styles.containerSchedule}>
-              <Text style={styles.dateStyle}>17/02/2024 - <Text style={styles.textStyle}>Culto da família</Text></Text>
-              <Text style={styles.dateStyle}>18/02/2024 - <Text style={styles.textStyle}>Culto de Oração</Text></Text>
-              <Text style={styles.dateStyle}>22/02/2024 - <Text style={styles.textStyle}>Santa Ceia</Text></Text>
-              <Text style={styles.dateStyle}>24/02/2024 - <Text style={styles.textStyle}>Encontro de Casais</Text></Text>
-              <Text style={styles.dateStyle}>25/02/2024 - <Text style={styles.textStyle}>Culto da família</Text></Text>
-              <Text style={styles.dateStyle}>22/02/2024 - <Text style={styles.textStyle}>Santa Ceia</Text></Text>
-              <Text style={styles.dateStyle}>24/02/2024 - <Text style={styles.textStyle}>Encontro de Casais</Text></Text>
-              <Text style={styles.dateStyle}>25/02/2024 - <Text style={styles.textStyle}>Culto da família</Text></Text>
+              <FlatList
+                data={events}
+                renderItem={renderItem}
+                keyExtractor={item => item.id.toString()}
+              />
             </ScrollView >
 
           </View>
           <View style={styles.buttonsBlocks}>
             <View style={styles.containerBlocks}>
               {/* Bloco com ícone de bolo de aniversário */}
-              <TouchableOpacity style={styles.block}>
+              <TouchableOpacity style={styles.block} onPress={() => navigation.navigate("Birthdays")}>
                 <MaterialIcons name="cake" size={50} color="black" />
                 <Text>Aniversariantes</Text>
               </TouchableOpacity>
@@ -67,7 +89,7 @@ export default function MainScreen() {
             </View>
             <View style={styles.containerBlocks}>
               {/* Bloco com ícone de calendário */}
-              <TouchableOpacity style={styles.block}>
+              <TouchableOpacity style={styles.block} onPress={() => navigation.navigate("Schedule")}>
                 <MaterialIcons name="calendar-month" size={50} color="black" />
                 <Text>Calendário</Text>
               </TouchableOpacity>
@@ -113,7 +135,7 @@ const styles = StyleSheet.create({
     width: 50,
     height: 50,
     borderRadius: 25,
-    
+
   },
   block: {
     width: 150,
@@ -167,9 +189,9 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   boxContainer: {
-    margin:0,
-    padding:0,
-    
+    margin: 0,
+    padding: 0,
+
     zIndex: -9999,
     width: 800,
     height: 800,

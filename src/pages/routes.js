@@ -17,8 +17,12 @@ import HandleAddReport from './CultReport/handleAddReport';
 import Studies from './Studies';
 import NewStudies from './Studies/newStudies';
 import Images from './Studies/images';
-import CheckBox2 from '../components/CheckBox/CheckBox2/index';
+import CheckBox2 from '../components/CheckBox2/index';
 import Devotional from '../pages/Devotional';
+import Peoples from '../pages/Peoples';
+import Birthdays from '../pages/Birthdays';
+import Schedule from '../pages/Schedule';
+import EventCreate from '../pages/Schedule/eventCreate';
 
 const Stack = createNativeStackNavigator();
 
@@ -90,36 +94,57 @@ export default function Routes() {
         component={Menu}
         options={{ headerShown: false }}
       />
-       <Stack.Screen
+      <Stack.Screen
         name="HandleAddReport"
         component={HandleAddReport}
         options={{ headerShown: false }}
       />
-          <Stack.Screen
+      <Stack.Screen
         name="Studies"
         component={Studies}
         options={{ headerShown: false }}
       />
-       <Stack.Screen
+      <Stack.Screen
         name="NewStudies"
         component={NewStudies}
         options={{ headerShown: false }}
       />
-       <Stack.Screen
+      <Stack.Screen
         name="Images"
         component={Images}
         options={{ headerShown: false }}
-      /> 
+      />
       <Stack.Screen
-      name="CheckBox2"
-      component={CheckBox2}
-      options={{ headerShown: false }}
-    />
+        name="CheckBox2"
+        component={CheckBox2}
+        options={{ headerShown: false }}
+      />
       <Stack.Screen
-      name="Devotional"
-      component={Devotional}
-      options={{ headerShown: false }}
-    />
+        name="Devotional"
+        component={Devotional}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="Peoples"
+        component={Peoples}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="Birthdays"
+        component={Birthdays}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="Schedule"
+        component={Schedule}
+        options={{ headerShown: false }}
+      />
+        <Stack.Screen
+        name="EventCreate"
+        component={EventCreate}
+        options={{ headerShown: false }}
+      />
+    
 
     </Stack.Navigator>
   );
