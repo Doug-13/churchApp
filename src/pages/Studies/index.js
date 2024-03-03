@@ -20,27 +20,28 @@ const Studies = () => {
 
     return (
         <View style={styles.container}>
+            <Text style={styles.pageTitle}>Cursos Disponíveis</Text>
             <View style={styles.row}>
                 <CursoItem
                     title="Curso de Programação"
-                    imageSource={{ uri: 'https://images.pexels.com/photos/272337/pexels-photo-272337.jpeg' }}
+                    imageSource={require('../../../assets/Logo.png')}
                     onPress={() => handleCursoPress("Curso de Programação")}
                 />
                 <CursoItem
                     title="Curso de Design Gráfico"
-                    imageSource={{ uri: 'https://images.pexels.com/photos/272337/pexels-photo-272337.jpeg' }}
+                    imageSource={require('../../../assets/Logo.png')}
                     onPress={() => handleCursoPress("Curso de Design Gráfico")}
                 />
             </View>
             <View style={styles.row}>
                 <CursoItem
                     title="Curso de Marketing Digital"
-                    imageSource={{ uri: 'https://images.pexels.com/photos/272337/pexels-photo-272337.jpeg' }}
+                    imageSource={require('../../../assets/Logo.png')}
                     onPress={() => handleCursoPress("Curso de Marketing Digital")}
                 />
                 <CursoItem
                     title="Curso de Fotografia"
-                    imageSource={{ uri: 'https://images.pexels.com/photos/272337/pexels-photo-272337.jpeg' }}
+                    imageSource={require('../../../assets/Logo.png')}
                     onPress={() => handleCursoPress("Curso de Fotografia")}
                 />
             </View>
@@ -57,6 +58,7 @@ const CursoItem = ({ title, imageSource, onPress }) => {
         <TouchableOpacity onPress={onPress} style={styles.cursoItem}>
             <ImageBackground source={imageSource} style={styles.cursoImage}>
                 <Text style={styles.cursoTitle}>{title}</Text>
+                <Text style={styles.cursoName}>{title}</Text>
             </ImageBackground>
         </TouchableOpacity>
     );
@@ -70,6 +72,12 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         backgroundColor: '#fff',
         padding: 10,
+        marginTop:20
+    },
+    pageTitle: {
+        fontSize: 24,
+        fontWeight: 'bold',
+        marginBottom: 20,
     },
     row: {
         flexDirection: 'row',
@@ -80,13 +88,13 @@ const styles = StyleSheet.create({
     },
     cursoItem: {
         flex: 1,
-        height: 150,
+        height: 200,
         borderRadius: 10,
         overflow: 'hidden',
     },
     cursoImage: {
         flex: 1,
-        justifyContent: 'center',
+        justifyContent: 'flex-end',
         alignItems: 'center',
         borderRadius: 10,
         overflow: 'hidden',
@@ -99,6 +107,14 @@ const styles = StyleSheet.create({
         backgroundColor: 'rgba(0, 0, 0, 0.5)',
         padding: 5,
     },
+    cursoName: {
+        fontSize: 16,
+        color: '#fff',
+        textAlign: 'center',
+        backgroundColor: 'rgba(0, 0, 0, 0.5)',
+        paddingVertical: 5,
+        paddingHorizontal: 10,
+    },
     addButton: {
         backgroundColor: 'blue',
         width: 50,
@@ -109,6 +125,7 @@ const styles = StyleSheet.create({
         position: 'absolute',
         bottom: 20,
         right: 20,
+        elevation: 3, // Add elevation for a raised effect
     },
 });
 

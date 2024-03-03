@@ -23,6 +23,9 @@ import Peoples from '../pages/Peoples';
 import Birthdays from '../pages/Birthdays';
 import Schedule from '../pages/Schedule';
 import EventCreate from '../pages/Schedule/eventCreate';
+import Financial from '../pages/Financial'
+import Groups from '../pages/Groups'
+import InsertGroups from '../pages/Groups/insertGoups'
 
 const Stack = createNativeStackNavigator();
 
@@ -139,12 +142,27 @@ export default function Routes() {
         component={Schedule}
         options={{ headerShown: false }}
       />
-        <Stack.Screen
+      <Stack.Screen
         name="EventCreate"
         component={EventCreate}
         options={{ headerShown: false }}
       />
-    
+      <Stack.Screen
+        name="Financial"
+        component={Financial}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="Groups"
+        component={Groups}
+        options={{ headerShown: false }}
+      />
+
+      <Stack.Screen
+        name="InsertGroups"
+        component={InsertGroups}
+        options={{ headerShown: false }}
+      />
 
     </Stack.Navigator>
   );

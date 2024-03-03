@@ -37,11 +37,14 @@ const MenuScreen = () => {
       case 'Studies':
         navigation.navigate('Studies');
         break;
-      case 'Profile': // Handle the 'Profile' button
-        navigation.navigate('Profile'); // Navigate to the 'Profile' screen
+      case 'Profile': 
+        navigation.navigate('Profile'); 
         break;
-        case 'Peoples': // Handle the 'Profile' button
-        navigation.navigate('Peoples'); // Navigate to the 'Profile' screen
+        case 'Peoples': 
+        navigation.navigate('Peoples'); 
+        break;
+        case 'Fluxo de Caixa': 
+        navigation.navigate('Financial'); 
         break;
       default:
         break;

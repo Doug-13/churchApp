@@ -142,7 +142,7 @@ const styles = StyleSheet.create({
     born: {
         fontSize: 16,
         marginBottom: 2,
-        color: '#666',
+        color: '#667',
         fontWeight: 'bold',
     },
     nome: {
