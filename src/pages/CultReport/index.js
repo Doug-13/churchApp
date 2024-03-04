@@ -26,6 +26,7 @@ const CultReport = () => {
 
   return (
     <SafeAreaView style={styles.container}>
+      <Text style={styles.pageTitle}>Relatórios</Text>
       <ScrollView>
         {/* Lista de relatórios de culto */}
         <View style={styles.reportList}>
@@ -53,6 +54,13 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
+  },
+  pageTitle: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    marginTop: 10,
+    marginBottom: 20,
   },
   reportList: {
     paddingHorizontal: 20,
