@@ -1,0 +1,736 @@
+{
+    "1": [
+        {
+            "dia": "01",
+            "mes": "fevereiro",
+            "versiculo": "Mateus 6:33",
+            "texto": "Mas buscai primeiro o Reino de Deus, e a sua justiça, e todas estas coisas vos serão acrescentadas.",
+            "conselho": "Priorize sua busca pelo Reino de Deus em todas as áreas da sua vida.",
+            "autor": "Criado via Chat GPT para realização de testes"
+        },
+        {
+            "dia": "02",
+            "mes": "fevereiro",
+            "versiculo": "Provérbios 3:5-6",
+            "texto": "Confia no Senhor de todo o teu coração, e não te estribes no teu próprio entendimento. Reconhece-o em todos os teus caminhos, e ele endireitará as tuas veredas.",
+            "conselho": "Confie plenamente no Senhor e permita que Ele guie seus passos.",
+            "autor": "Criado via Chat GPT para realização de testes"
+        },
+        {
+            "dia": "03",
+            "mes": "fevereiro",
+            "versiculo": "Salmo 119:105",
+            "texto": "Lâmpada para os meus pés é tua palavra, e luz para o meu caminho.",
+            "conselho": "Deixe a Palavra de Deus iluminar cada passo que você dá.",
+            "autor": "Criado via Chat GPT para realização de testes"
+        },
+        {
+            "dia": "04",
+            "mes": "fevereiro",
+            "versiculo": "Isaías 40:31",
+            "texto": "Mas os que esperam no Senhor renovarão as suas forças; subirão com asas como águias; correrão, e não se cansarão; andarão, e não se fatigarão.",
+            "conselho": "Tenha paciência e confiança na espera pelo Senhor, pois Ele renovará suas forças.",
+            "autor": "Criado via Chat GPT para realização de testes"
+        },
+        {
+            "dia": "05",
+            "mes": "fevereiro",
+            "versiculo": "Filipenses 4:6-7",
+            "texto": "Não andeis ansiosos por coisa alguma; antes em tudo sejam os vossos pedidos conhecidos diante de Deus pela oração e súplica com ações de graças; e a paz de Deus, que excede todo o entendimento, guardará os vossos corações e os vossos sentimentos em Cristo Jesus.",
+            "conselho": "Entregue suas preocupações a Deus em oração, e experimente a paz que excede todo entendimento.",
+            "autor": "Criado via Chat GPT para realização de testes"
+        },
+        {
+            "dia": "06",
+            "mes": "fevereiro",
+            "versiculo": "Romanos 8:28",
+            "texto": "E sabemos que todas as coisas contribuem juntamente para o bem daqueles que amam a Deus, daqueles que são chamados por seu decreto.",
+            "conselho": "Confie que Deus está trabalhando todas as coisas para o seu bem, mesmo que não compreenda completamente.",
+            "autor": "Criado via Chat GPT para realização de testes"
+        },
+        {
+            "dia": "07",
+            "mes": "fevereiro",
+            "versiculo": "João 15:5",
+            "texto": "Eu sou a videira, vós as varas; quem está em mim, e eu nele, esse dá muito fruto; porque sem mim nada podeis fazer.",
+            "conselho": "Permaneça em Cristo e você produzirá frutos que glorificam a Deus.",
+            "autor": "Criado via Chat GPT para realização de testes"
+        },
+        {
+            "dia": "08",
+            "mes": "fevereiro",
+            "versiculo": "Mateus 11:28",
+            "texto": "Vinde a mim, todos os que estais cansados e oprimidos, e eu vos aliviarei.",
+            "conselho": "Encontre descanso e refúgio em Cristo nos momentos de cansaço e dificuldade.",
+            "autor": "Criado via Chat GPT para realização de testes"
+        },
+        {
+            "dia": "09",
+            "mes": "fevereiro",
+            "versiculo": "Salmos 37:4",
+            "texto": "Deleita-te também no Senhor, e ele te concederá o que deseja o teu coração.",
+            "conselho": "Encontre prazer e alegria na presença do Senhor, e Ele satisfará os desejos do seu coração.",
+            "autor": "Criado via Chat GPT para realização de testes"
+        },
+        {
+            "dia": "10",
+            "mes": "fevereiro",
+            "versiculo": "2 Coríntios 5:7",
+            "texto": "Porque andamos por fé, e não por vista.",
+            "conselho": "Confie na direção de Deus mesmo quando não puder ver o que está à frente.",
+            "autor": "Criado via Chat GPT para realização de testes"
+        },
+        {
+            "dia": "11",
+            "mes": "fevereiro",
+            "versiculo": "Efésios 4:32",
+            "texto": "Antes sede uns para com os outros benignos, misericordiosos, perdoando-vos uns aos outros, como também Deus vos perdoou em Cristo.",
+            "conselho": "Pratique a bondade, a misericórdia e o perdão, seguindo o exemplo de Cristo.",
+            "autor": "Criado via Chat GPT para realização de testes"
+        },
+        {
+            "dia": "12",
+            "mes": "fevereiro",
+            "versiculo": "Tiago 1:5",
+            "texto": "E, se algum de vós tem falta de sabedoria, peça-a a Deus, que a todos dá liberalmente, e não a lança em rosto; e ser-lhe-á dada.",
+            "conselho": "Busque a sabedoria de Deus em todas as decisões e situações da vida.",
+            "autor": "Criado via Chat GPT para realização de testes"
+        },
+        {
+            "dia": "13",
+            "mes": "fevereiro",
+            "versiculo": "1 João 1:9",
+            "texto": "Se confessarmos os nossos pecados, ele é fiel e justo para nos perdoar os pecados, e nos purificar de toda a injustiça.",
+            "conselho": "Confesse seus pecados a Deus e experimente o perdão e a purificação que Ele oferece.",
+            "autor": "Criado via Chat GPT para realização de testes"
+        },
+        {
+            "dia": "14",
+            "mes": "fevereiro",
+            "versiculo": "1 Pedro 5:7",
+            "texto": "Lançando sobre ele toda a vossa ansiedade, porque ele tem cuidado de vós.",
+            "conselho": "Confie suas preocupações e ansiedades a Deus, sabendo que Ele cuida de você.",
+            "autor": "Criado via Chat GPT para realização de testes"
+        },
+        {
+            "dia": "15",
+            "mes": "fevereiro",
+            "versiculo": "Mateus 28:20",
+            "texto": "Ensinar-lhes a observar todas as coisas que vos tenho ordenado. E eis que eu estou convosco todos os dias, até à consumação dos séculos. Amém!",
+            "conselho": "Aprenda e obedeça aos ensinamentos de Jesus, sabendo que Ele está sempre com você.",
+            "autor": "Criado via Chat GPT para realização de testes"
+        },
+        {
+            "dia": "16",
+            "mes": "fevereiro",
+            "versiculo": "Romanos 12:2",
+            "texto": "E não vos conformeis com este mundo, mas transformai-vos pela renovação da vossa mente, para que experimenteis qual seja a boa, agradável, e perfeita vontade de Deus.",
+            "conselho": "Renove sua mente pela Palavra de Deus e viva de acordo com a vontade d'Ele.",
+            "autor": "Criado via Chat GPT para realização de testes"
+        },
+        {
+            "dia": "17",
+            "mes": "fevereiro",
+            "versiculo": "Colossenses 3:23-24",
+            "texto": "E tudo quanto fizerdes, fazei-o de todo o coração, como ao Senhor, e não aos homens, sabendo que do Senhor recebereis como recompensa a herança; servi a Cristo, o Senhor.",
+            "conselho": "Sirva a Deus em tudo o que você faz, e Ele o recompensará.",
+            "autor": "Criado via Chat GPT para realização de testes"
+        },
+        {
+            "dia": "18",
+            "mes": "fevereiro",
+            "versiculo": "Romanos 8:38-39",
+            "texto": "Porque estou certo de que, nem a morte, nem a vida, nem os anjos, nem os principados, nem as potestades, nem o presente, nem o porvir, nem a altura, nem a profundidade, nem alguma outra criatura nos poderá separar do amor de Deus, que está em Cristo Jesus nosso Senhor.",
+            "conselho": "Nada pode separá-lo do amor de Deus. Descanse nessa verdade.",
+            "autor": "Criado via Chat GPT para realização de testes"
+        },
+        {
+            "dia": "19",
+            "mes": "fevereiro",
+            "versiculo": "Hebreus 12:1-2",
+            "texto": "Portanto, nós também, pois, que estamos rodeados de uma tão grande nuvem de testemunhas, deixemos todo o embaraço, e o pecado que tão de perto nos rodeia, e corramos com paciência a carreira que nos está proposta, olhando para Jesus, autor e consumador da fé, o qual, pelo gozo que lhe estava proposto, suportou a cruz, desprezando a vergonha, e está assentado à destra do trono de Deus.",
+            "conselho": "Corra a corrida da fé com perseverança, mantendo os olhos fixos em Jesus.",
+            "autor": "Criado via Chat GPT para realização de testes"
+        },
+        {
+            "dia": "20",
+            "mes": "fevereiro",
+            "versiculo": "Isaías 41:10",
+            "texto": "Não temas, porque eu sou contigo; não te assombres, porque eu sou teu Deus; eu te fortaleço, e te ajudo, e te sustento com a destra da minha justiça.",
+            "conselho": "Não tema, pois Deus está com você. Ele o fortalecerá e o sustentará.",
+            "autor": "Criado via Chat GPT para realização de testes"
+        },
+        {
+            "dia": "21",
+            "mes": "fevereiro",
+            "versiculo": "Josué 1:9",
+            "texto": "Não to mandei eu? Esforça-te, e tem bom ânimo; não temas, nem te espantes; porque o Senhor teu Deus é contigo, por onde quer que andares.",
+            "conselho": "Seja corajoso e forte, pois o Senhor está com você em todos os lugares que você for.",
+            "autor": "Criado via Chat GPT para realização de testes"
+        },
+        {
+            "dia": "22",
+            "mes": "fevereiro",
+            "versiculo": "Romanos 8:28",
+            "texto": "E sabemos que todas as coisas contribuem juntamente para o bem daqueles que amam a Deus, daqueles que são chamados por seu decreto.",
+            "conselho": "Confie que Deus está trabalhando todas as coisas para o seu bem, mesmo que não compreenda completamente.",
+            "autor": "Criado via Chat GPT para realização de testes"
+        },
+        {
+            "dia": "23",
+            "mes": "fevereiro",
+            "versiculo": "Filipenses 4:13",
+            "texto": "Posso todas as coisas naquele que me fortalece.",
+            "conselho": "Você pode enfrentar qualquer desafio com a força que vem de Cristo.",
+            "autor": "Criado via Chat GPT para realização de testes"
+        },
+        {
+            "dia": "24",
+            "mes": "fevereiro",
+            "versiculo": "Jeremias 29:11",
+            "texto": "Porque eu bem sei os pensamentos que tenho a vosso respeito, diz o Senhor; pensamentos de paz, e não de mal, para vos dar o fim que esperais.",
+            "conselho": "Confie nos planos de Deus para você, pois são de paz e prosperidade.",
+            "autor": "Criado via Chat GPT para realização de testes"
+        },
+        {
+            "dia": "25",
+            "mes": "fevereiro",
+            "versiculo": "Salmos 23:1",
+            "texto": "O Senhor é o meu pastor, nada me faltará.",
+            "conselho": "Deixe o Senhor guiar sua vida, e Ele suprirá todas as suas necessidades.",
+            "autor": "Criado via Chat GPT para realização de testes"
+        },
+        {
+            "dia": "26",
+            "mes": "fevereiro",
+            "versiculo": "Mateus 6:34",
+            "texto": "Não vos inquieteis, pois, pelo dia de amanhã; porque o dia de amanhã cuidará de si mesmo. Basta a cada dia o seu mal.",
+            "conselho": "Confie no cuidado de Deus para o amanhã e viva um dia de cada vez.",
+            "autor": "Criado via Chat GPT para realização de testes"
+        },
+        {
+            "dia": "27",
+            "mes": "fevereiro",
+            "versiculo": "Provérbios 3:5-6",
+            "texto": "Confia no Senhor de todo o teu coração, e não te estribes no teu próprio entendimento. Reconhece-o em todos os teus caminhos, e ele endireitará as tuas veredas.",
+            "conselho": "Confie plenamente no Senhor e permita que Ele guie seus passos.",
+            "autor": "Criado via Chat GPT para realização de testes"
+        },
+        {
+            "dia": "28",
+            "mes": "fevereiro",
+            "versiculo": "Romanos 12:12",
+            "texto": "Alegrai-vos na esperança, sede pacientes na tribulação, perseverai na oração.",
+            "conselho": "Alegre-se na esperança, seja paciente na tribulação, continue perseverando na oração.",
+            "autor": "Criado via Chat GPT para realização de testes"
+        },
+        {
+            "dia": "29",
+            "mes": "fevereiro",
+            "versiculo": "Mateus 28:19-20",
+            "texto": "Portanto ide, fazei discípulos de todas as nações, batizando-os em nome do Pai, e do Filho, e do Espírito Santo; ensinando-os a guardar todas as coisas que eu vos tenho mandado; e eis que eu estou convosco todos os dias, até à consumação dos séculos. Amém.",
+            "conselho": "Faça discípulos de todas as nações, ensinando-os a obedecer a tudo o que Jesus ordenou.",
+            "autor": "Criado via Chat GPT para realização de testes"
+        }
+    ],
+    "2": [
+        {
+            "dia": "01",
+            "mes": "março",
+            "versiculo": "Provérbios 3:5",
+            "texto": "Confia no Senhor de todo o teu coração, e não te estribes no teu próprio entendimento.",
+            "conselho": "Coloque sua confiança totalmente no Senhor, e não dependa apenas do seu próprio entendimento.",
+            "autor": "Criado via Chat GPT para realização de testes"
+        },
+        {
+            "dia": "02",
+            "mes": "março",
+            "versiculo": "Salmos 37:4",
+            "texto": "Deleita-te também no Senhor, e ele te concederá o que deseja o teu coração.",
+            "conselho": "Encontre alegria e satisfação na presença do Senhor, e Ele atenderá aos desejos do seu coração.",
+            "autor": "Criado via Chat GPT para realização de testes"
+        },
+        {
+            "dia": "03",
+            "mes": "março",
+            "versiculo": "Isaías 41:10",
+            "texto": "Não temas, porque eu sou contigo; não te assombres, porque eu sou o teu Deus; eu te fortaleço, e te ajudo, e te sustento com a destra da minha justiça.",
+            "conselho": "Não tenha medo, pois Deus está com você para fortalecê-lo, ajudá-lo e sustentá-lo.",
+            "autor": "Criado via Chat GPT para realização de testes"
+        },
+        {
+            "dia": "04",
+            "mes": "março",
+            "versiculo": "1 Coríntios 16:14",
+            "texto": "Todas as vossas coisas sejam feitas com amor.",
+            "conselho": "Faça todas as coisas com amor, pois o amor é o maior mandamento.",
+            "autor": "Criado via Chat GPT para realização de testes"
+        },
+        {
+            "dia": "05",
+            "mes": "março",
+            "versiculo": "João 14:6",
+            "texto": "Disse-lhe Jesus: Eu sou o caminho, e a verdade e a vida; ninguém vem ao Pai, senão por mim.",
+            "conselho": "Aceite Jesus como o único caminho para Deus e a verdadeira vida.",
+            "autor": "Criado via Chat GPT para realização de testes"
+        },
+        {
+            "dia": "06",
+            "mes": "março",
+            "versiculo": "Romanos 12:2",
+            "texto": "E não vos conformeis com este mundo, mas transformai-vos pela renovação da vossa mente, para que experimenteis qual seja a boa, agradável, e perfeita vontade de Deus.",
+            "conselho": "Não se conforme com os padrões deste mundo, mas seja transformado pela renovação da sua mente.",
+            "autor": "Criado via Chat GPT para realização de testes"
+        },
+        {
+            "dia": "07",
+            "mes": "março",
+            "versiculo": "Salmos 23:1",
+            "texto": "O Senhor é o meu pastor, nada me faltará.",
+            "conselho": "Deixe o Senhor ser o seu pastor e você não terá falta de nada.",
+            "autor": "Criado via Chat GPT para realização de testes"
+        },
+        {
+            "dia": "08",
+            "mes": "março",
+            "versiculo": "Mateus 6:33",
+            "texto": "Mas buscai primeiro o reino de Deus, e a sua justiça, e todas estas coisas vos serão acrescentadas.",
+            "conselho": "Busque primeiro o Reino de Deus e a Sua justiça, e todas as outras coisas serão acrescentadas a você.",
+            "autor": "Criado via Chat GPT para realização de testes"
+        },
+        {
+            "dia": "09",
+            "mes": "março",
+            "versiculo": "Romanos 8:28",
+            "texto": "E sabemos que todas as coisas contribuem juntamente para o bem daqueles que amam a Deus, daqueles que são chamados por seu decreto.",
+            "conselho": "Confie que Deus está trabalhando todas as coisas para o seu bem.",
+            "autor": "Criado via Chat GPT para realização de testes"
+        },
+        {
+            "dia": "10",
+            "mes": "março",
+            "versiculo": "Efésios 2:8-9",
+            "texto": "Porque pela graça sois salvos, por meio da fé; e isto não vem de vós, é dom de Deus. Não vem das obras, para que ninguém se glorie.",
+            "conselho": "Lembre-se de que a salvação é pela graça, através da fé em Jesus Cristo, não por obras.",
+            "autor": "Criado via Chat GPT para realização de testes"
+        },
+        {
+            "dia": "11",
+            "mes": "março",
+            "versiculo": "Tiago 1:17",
+            "texto": "Toda boa dádiva e todo dom perfeito vêm do alto, descendo do Pai das luzes, em quem não há mudança nem sombra de variação.",
+            "conselho": "Reconheça que todas as bênçãos vêm de Deus, que é constante e nunca muda.",
+            "autor": "Criado via Chat GPT para realização de testes"
+        },
+        {
+            "dia": "12",
+            "mes": "março",
+            "versiculo": "Mateus 11:28",
+            "texto": "Vinde a mim, todos os que estais cansados e oprimidos, e eu vos aliviarei.",
+            "conselho": "Venha a Jesus, Ele lhe dará descanso e alívio.",
+            "autor": "Criado via Chat GPT para realização de testes"
+        },
+        {
+            "dia": "13",
+            "mes": "março",
+            "versiculo": "Filipenses 4:6-7",
+            "texto": "Não andeis ansiosos por coisa alguma; mas em tudo, pela oração e súplica com ação de graças, sejam conhecidas as vossas petições diante de Deus. E a paz de Deus, que excede todo o entendimento, guardará os vossos corações e os vossos sentimentos em Cristo Jesus.",
+            "conselho": "Não se preocupe com nada, mas ore sobre tudo; e a paz de Deus guardará o seu coração e mente.",
+            "autor": "Criado via Chat GPT para realização de testes"
+        },
+        {
+            "dia": "14",
+            "mes": "março",
+            "versiculo": "João 3:16",
+            "texto": "Porque Deus amou o mundo de tal maneira que deu o seu Filho unigênito, para que todo aquele que nele crê não pereça, mas tenha a vida eterna.",
+            "conselho": "Lembre-se do amor de Deus por você, expresso através do sacrifício de Jesus Cristo.",
+            "autor": "Criado via Chat GPT para realização de testes"
+        },
+        {
+            "dia": "15",
+            "mes": "março",
+            "versiculo": "1 João 4:8",
+            "texto": "Aquele que não ama não conhece a Deus; porque Deus é amor.",
+            "conselho": "Conheça a Deus através do Seu amor, e deixe esse amor ser refletido em sua vida.",
+            "autor": "Criado via Chat GPT para realização de testes"
+        },
+        {
+            "dia": "16",
+            "mes": "março",
+            "versiculo": "João 15:5",
+            "texto": "Eu sou a videira, vós as varas; quem está em mim, e eu nele, esse dá muito fruto; porque sem mim nada podeis fazer.",
+            "conselho": "Permaneça em Cristo, e Ele lhe dará a capacidade de dar frutos abundantes.",
+            "autor": "Criado via Chat GPT para realização de testes"
+        },
+        {
+            "dia": "17",
+            "mes": "março",
+            "versiculo": "Provérbios 16:3",
+            "texto": "Confia ao Senhor as tuas obras, e teus pensamentos serão estabelecidos.",
+            "conselho": "Entregue seus planos e ações ao Senhor, e Ele estabelecerá seus pensamentos.",
+            "autor": "Criado via Chat GPT para realização de testes"
+        },
+        {
+            "dia": "18",
+            "mes": "março",
+            "versiculo": "Isaías 26:3",
+            "texto": "Tu conservarás em paz aquele cuja mente está firme em ti; porque ele confia em ti.",
+            "conselho": "Mantenha sua mente firme em Deus, e Ele lhe dará paz.",
+            "autor": "Criado via Chat GPT para realização de testes"
+        },
+        {
+            "dia": "19",
+            "mes": "março",
+            "versiculo": "Salmos 37:5",
+            "texto": "Entrega o teu caminho ao Senhor; confia nele, e ele o fará.",
+            "conselho": "Confie no Senhor e entregue a Ele o seu caminho, e Ele guiará seus passos.",
+            "autor": "Criado via Chat GPT para realização de testes"
+        },
+        {
+            "dia": "20",
+            "mes": "março",
+            "versiculo": "Hebreus 13:5",
+            "texto": "Seja a vossa vida sem avareza, contentando-vos com o que tendes; porque ele disse: Não te deixarei, nem te desampararei.",
+            "conselho": "Esteja livre da ganância e satisfeito com o que você tem, pois Deus prometeu nunca te deixar nem te abandonar.",
+            "autor": "Criado via Chat GPT para realização de testes"
+        },
+        {
+            "dia": "21",
+            "mes": "março",
+            "versiculo": "Josué 1:9",
+            "texto": "Não to mandei eu? Esforça-te, e tem bom ânimo; não temas, nem te espantes; porque o Senhor teu Deus é contigo, por onde quer que andares.",
+            "conselho": "Seja forte e corajoso, porque o Senhor está com você onde quer que você vá.",
+            "autor": "Criado via Chat GPT para realização de testes"
+        },
+        {
+            "dia": "22",
+            "mes": "março",
+            "versiculo": "1 João 1:9",
+            "texto": "Se confessarmos os nossos pecados, ele é fiel e justo para nos perdoar os pecados, e nos purificar de toda a injustiça.",
+            "conselho": "Confesse seus pecados a Deus, e Ele lhe perdoará e purificará você de toda injustiça.",
+            "autor": "Criado via Chat GPT para realização de testes"
+        },
+        {
+            "dia": "23",
+            "mes": "março",
+            "versiculo": "Provérbios 4:23",
+            "texto": "Sobre tudo o que se deve guardar, guarda o teu coração, porque dele procedem as fontes da vida.",
+            "conselho": "Guarde seu coração acima de tudo, pois dele fluem as fontes da vida.",
+            "autor": "Criado via Chat GPT para realização de testes"
+        },
+        {
+            "dia": "24",
+            "mes": "março",
+            "versiculo": "Colossenses 3:17",
+            "texto": "E tudo quanto fizerdes, fazei-o de todo o coração, como ao Senhor, e não aos homens.",
+            "conselho": "Faça tudo com todo o seu coração, como se estivesse fazendo para o Senhor, e não para os homens.",
+            "autor": "Criado via Chat GPT para realização de testes"
+        },
+        {
+            "dia": "25",
+            "mes": "março",
+            "versiculo": "2 Timóteo 1:7",
+            "texto": "Porque Deus não nos deu o espírito de temor, mas de poder, e de amor, e de moderação.",
+            "conselho": "Lembre-se de que Deus lhe deu um espírito de poder, amor e autocontrole, não de medo.",
+            "autor": "Criado via Chat GPT para realização de testes"
+        },
+        {
+            "dia": "26",
+            "mes": "março",
+            "versiculo": "Lucas 6:31",
+            "texto": "E como vós quereis que os homens vos façam, da mesma maneira lhes fazei vós, também.",
+            "conselho": "Trate os outros da maneira como você gostaria de ser tratado.",
+            "autor": "Criado via Chat GPT para realização de testes"
+        },
+        {
+            "dia": "27",
+            "mes": "março",
+            "versiculo": "Efésios 4:32",
+            "texto": "Antes sede uns para com os outros benignos, misericordiosos, perdoando-vos uns aos outros, como também Deus vos perdoou em Cristo.",
+            "conselho": "Seja gentil, misericordioso e perdoe os outros, assim como Deus o perdoou em Cristo.",
+            "autor": "Criado via Chat GPT para realização de testes"
+        },
+        {
+            "dia": "28",
+            "mes": "março",
+            "versiculo": "Romanos 12:12",
+            "texto": "Alegrai-vos na esperança, sede pacientes na tribulação, perseverai na oração.",
+            "conselho": "Alegre-se na esperança, seja paciente na tribulação, continue perseverando na oração.",
+            "autor": "Criado via Chat GPT para realização de testes"
+        },
+        {
+            "dia": "29",
+            "mes": "março",
+            "versiculo": "Mateus 28:19-20",
+            "texto": "Portanto ide, fazei discípulos de todas as nações, batizando-os em nome do Pai, e do Filho, e do Espírito Santo; ensinando-os a guardar todas as coisas que eu vos tenho mandado; e eis que eu estou convosco todos os dias, até à consumação dos séculos. Amém.",
+            "conselho": "Faça discípulos de todas as nações, ensinando-os a obedecer a tudo o que Jesus ordenou.",
+            "autor": "Criado via Chat GPT para realização de testes"
+        },
+        {
+            "dia": "30",
+            "mes": "março",
+            "versiculo": "1 Pedro 5:7",
+            "texto": "Lançando sobre ele toda a vossa ansiedade, porque ele tem cuidado de vós.",
+            "conselho": "Entregue todas as suas preocupações a Deus, porque Ele cuida de você.",
+            "autor": "Criado via Chat GPT para realização de testes"
+        },
+        {
+            "dia": "31",
+            "mes": "março",
+            "versiculo": "Gálatas 6:9",
+            "texto": "E não nos cansemos de fazer o bem, porque a seu tempo ceifaremos, se não desfalecermos.",
+            "conselho": "Não desista de fazer o bem, pois no tempo certo você colherá se não desanimar.",
+            "autor": "Criado via Chat GPT para realização de testes"
+        }
+    ],
+    "3": [
+        {
+            "dia": "1",
+            "mes": "abril",
+            "versiculo": "Provérbios 16:3",
+            "texto": "Confie ao Senhor as suas obras, e os seus planos serão bem-sucedidos.",
+            "conselho": "Entregue suas atividades ao Senhor, e Ele guiará seus passos para o sucesso.",
+            "autor": "Criado via Chat GPT para realização de testes"
+        },
+        {
+            "dia": "2",
+            "mes": "abril",
+            "versiculo": "Provérbios 3:5-6",
+            "texto": "Confie no Senhor de todo o seu coração e não se apoie em seu próprio entendimento; reconheça o Senhor em todos os seus caminhos, e ele endireitará as suas veredas.",
+            "conselho": "Confie plenamente em Deus e permita que Ele guie cada passo do seu caminho.",
+            "autor": "Criado via Chat GPT para realização de testes"
+        },
+        {
+            "dia": "3",
+            "mes": "abril",
+            "versiculo": "Salmos 37:5",
+            "texto": "Entregue o seu caminho ao Senhor; confie nele, e ele agirá.",
+            "conselho": "Deixe suas preocupações com Deus e confie que Ele agirá em seu favor.",
+            "autor": "Criado via Chat GPT para realização de testes"
+        },
+        {
+            "dia": "4",
+            "mes": "abril",
+            "versiculo": "Filipenses 4:6-7",
+            "texto": "Não se preocupem com nada, mas em todas as orações peçam a Deus o que vocês precisam e orem sempre com o coração agradecido. E a paz de Deus, que ninguém consegue entender, guardará o coração e a mente de vocês, pois vocês estão unidos com Cristo Jesus.",
+            "conselho": "Em vez de se preocupar, ore e agradeça a Deus; Ele trará paz ao seu coração.",
+            "autor": "Criado via Chat GPT para realização de testes"
+        },
+        {
+            "dia": "5",
+            "mes": "abril",
+            "versiculo": "Isaías 40:31",
+            "texto": "Mas os que esperam no Senhor renovam as suas forças. Voam alto como águias; correm e não ficam exaustos, andam e não se cansam.",
+            "conselho": "Aqueles que confiam em Deus encontrarão força e resistência para superar qualquer desafio.",
+            "autor": "Criado via Chat GPT para realização de testes"
+        },
+        {
+            "dia": "6",
+            "mes": "abril",
+            "versiculo": "Salmos 23:1",
+            "texto": "O Senhor é o meu pastor; de nada terei falta.",
+            "conselho": "Deus cuidará de todas as suas necessidades; confie Nele como seu pastor.",
+            "autor": "Criado via Chat GPT para realização de testes"
+        },
+        {
+            "dia": "7",
+            "mes": "abril",
+            "versiculo": "Mateus 6:33",
+            "texto": "Mas busquem em primeiro lugar o Reino de Deus e a sua justiça, e todas essas coisas serão acrescentadas a vocês.",
+            "conselho": "Priorize o Reino de Deus em sua vida e confie que Ele cuidará de todas as suas necessidades.",
+            "autor": "Criado via Chat GPT para realização de testes"
+        },
+        {
+            "dia": "8",
+            "mes": "abril",
+            "versiculo": "Romanos 12:12",
+            "texto": "Alegrem-se na esperança, sejam pacientes na tribulação, perseverem na oração.",
+            "conselho": "Mantenha a esperança, seja paciente nas dificuldades e persista na oração.",
+            "autor": "Criado via Chat GPT para realização de testes"
+        },
+        {
+            "dia": "9",
+            "mes": "abril",
+            "versiculo": "1 Pedro 5:7",
+            "texto": "Lancem sobre ele toda a sua ansiedade, porque ele tem cuidado de vocês.",
+            "conselho": "Deixe suas preocupações com Deus, pois Ele se importa profundamente com você.",
+            "autor": "Criado via Chat GPT para realização de testes"
+        },
+        {
+            "dia": "10",
+            "mes": "abril",
+            "versiculo": "Mateus 11:28",
+            "texto": "Venham a mim, todos os que estão cansados e sobrecarregados, e eu darei descanso a vocês.",
+            "conselho": "Quando se sentir cansado e sobrecarregado, vá a Jesus; Ele lhe dará descanso.",
+            "autor": "Criado via Chat GPT para realização de testes"
+        },
+        {
+            "dia": "11",
+            "mes": "abril",
+            "versiculo": "Isaías 40:31",
+            "texto": "Mas aqueles que esperam no Senhor renovam as suas forças. Voam alto como águias; correm e não ficam exaustos, andam e não se cansam.",
+            "conselho": "Aqueles que confiam no Senhor encontrarão força e renovarão suas energias.",
+            "autor": "Criado via Chat GPT para realização de testes"
+        },
+        {
+            "dia": "12",
+            "mes": "abril",
+            "versiculo": "Salmos 27:1",
+            "texto": "O Senhor é a minha luz e a minha salvação; de quem terei temor? O Senhor é o meu refúgio; de quem terei medo?",
+            "conselho": "Confie no Senhor, pois Ele é sua luz, salvação e refúgio. Não tenha medo, pois Ele está ao seu lado.",
+            "autor": "Criado via Chat GPT para realização de testes"
+        },
+        {
+            "dia": "13",
+            "mes": "abril",
+            "versiculo": "Mateus 11:28",
+            "texto": "Venham a mim, todos os que estão cansados e sobrecarregados, e eu lhes darei descanso.",
+            "conselho": "Quando estiver sobrecarregado, busque a Deus, pois Ele lhe dará descanso.",
+            "autor": "Criado via Chat GPT para realização de testes"
+        },
+        {
+            "dia": "14",
+            "mes": "abril",
+            "versiculo": "João 14:27",
+            "texto": "Deixo-lhes a paz; a minha paz lhes dou. Não a dou como o mundo a dá. Não se perturbem os seus corações, nem tenham medo.",
+            "conselho": "Receba a paz que Jesus oferece, que é diferente da paz do mundo. Não se perturbe, confie Nele.",
+            "autor": "Criado via Chat GPT para realização de testes"
+        },
+        {
+            "dia": "15",
+            "mes": "abril",
+            "versiculo": "Mateus 6:33",
+            "texto": "Mas busquem primeiro o Reino de Deus, e a sua justiça, e todas essas coisas serão acrescentadas a vocês.",
+            "conselho": "Priorize buscar a vontade de Deus em sua vida, e Ele proverá tudo o que você precisa.",
+            "autor": "Criado via Chat GPT para realização de testes"
+        },
+        {
+            "dia": "16",
+            "mes": "abril",
+            "versiculo": "Isaías 41:10",
+            "texto": "Não tema, pois estou com você; não tenha medo, pois sou o seu Deus. Eu o fortalecerei e o ajudarei; eu o segurarei com a minha mão direita vitoriosa.",
+            "conselho": "Confie na presença e no poder de Deus, Ele está sempre ao seu lado para fortalecê-lo e ajudá-lo.",
+            "autor": "Criado via Chat GPT para realização de testes"
+        },
+        {
+            "dia": "17",
+            "mes": "abril",
+            "versiculo": "Romanos 12:12",
+            "texto": "Alegrem-se na esperança, sejam pacientes na tribulação, perseverem na oração.",
+            "conselho": "Mantenha a alegria na esperança, seja paciente durante as dificuldades e perseverante na oração.",
+            "autor": "Criado via Chat GPT para realização de testes"
+        },
+        {
+            "dia": "18",
+            "mes": "abril",
+            "versiculo": "1 Pedro 5:7",
+            "texto": "Lancem sobre ele toda a sua ansiedade, porque ele tem cuidado de vocês.",
+            "conselho": "Entregue suas preocupações a Deus, pois Ele se importa profundamente com você.",
+            "autor": "Criado via Chat GPT para realização de testes"
+        },
+        {
+            "dia": "19",
+            "mes": "abril",
+            "versiculo": "Salmo 46:1",
+            "texto": "Deus é o nosso refúgio e fortaleza, socorro bem presente nas tribulações.",
+            "conselho": "Lembre-se de que Deus é seu refúgio e força, Ele está sempre presente para ajudá-lo em tempos difíceis.",
+            "autor": "Criado via Chat GPT para realização de testes"
+        },
+        {
+            "dia": "20",
+            "mes": "abril",
+            "versiculo": "Salmos 34:4",
+            "texto": "Busquei o Senhor, e ele me acolheu; livrou-me de todos os meus temores.",
+            "conselho": "Quando buscar a Deus, Ele o receberá e livrará de todo medo.",
+            "autor": "Criado via Chat GPT para realização de testes"
+        },
+        {
+            "dia": "21",
+            "mes": "abril",
+            "versiculo": "1 Pedro 5:7",
+            "texto": "Lancem sobre ele toda a sua ansiedade, porque ele tem cuidado de vocês.",
+            "conselho": "Entregue todas as suas preocupações a Deus, pois Ele se preocupa com você.",
+            "autor": "Criado via Chat GPT para realização de testes"
+        },
+        {
+            "dia": "22",
+            "mes": "abril",
+            "versiculo": "Isaías 41:10",
+            "texto": "Não temas, porque eu sou contigo; não te assombres, porque eu sou teu Deus; eu te fortaleço, e te ajudo, e te sustento com a minha destra fiel.",
+            "conselho": "Não tenha medo, pois Deus está contigo; Ele te fortalecerá, te ajudará e te sustentará com a sua mão poderosa.",
+            "autor": "Criado via Chat GPT para realização de testes"
+        },
+        {
+            "dia": "23",
+            "mes": "abril",
+            "versiculo": "Salmos 55:22",
+            "texto": "Entrega o teu caminho ao Senhor; confia nele, e ele tudo fará.",
+            "conselho": "Confie em Deus e entregue a Ele todas as suas preocupações, pois Ele cuidará de tudo.",
+            "autor": "Criado via Chat GPT para realização de testes"
+        },
+        {
+            "dia": "24",
+            "mes": "abril",
+            "versiculo": "Josué 1:9",
+            "texto": "Não to mandei eu? Esforça-te, e tem bom ânimo; não temas, nem te espantes; porque o Senhor teu Deus é contigo, por onde quer que andares.",
+            "conselho": "Seja forte e corajoso, não tenha medo, pois Deus está sempre com você, onde quer que você vá.",
+            "autor": "Criado via Chat GPT para realização de testes"
+        },
+        {
+            "dia": "25",
+            "mes": "abril",
+            "versiculo": "Salmos 23:1",
+            "texto": "O Senhor é o meu pastor; nada me faltará.",
+            "conselho": "Deixe o Senhor cuidar de você, pois Ele é o seu pastor e suprirá todas as suas necessidades.",
+            "autor": "Criado via Chat GPT para realização de testes"
+        },
+        {
+            "dia": "26",
+            "mes": "abril",
+            "versiculo": "Romanos 8:28",
+            "texto": "E sabemos que todas as coisas contribuem juntamente para o bem daqueles que amam a Deus, daqueles que são chamados segundo o seu propósito.",
+            "conselho": "Confie que Deus está trabalhando para o seu bem, mesmo nas situações difíceis.",
+            "autor": "Criado via Chat GPT para realização de testes"
+        },
+        {
+            "dia": "27",
+            "mes": "abril",
+            "versiculo": "João 15:5",
+            "texto": "Eu sou a videira, vós as varas; quem está em mim, e eu nele, esse dá muito fruto; porque sem mim nada podeis fazer.",
+            "conselho": "Permaneça em Cristo e você produzirá frutos que glorificam a Deus.",
+            "autor": "Criado via Chat GPT para realização de testes"
+        },
+        {
+            "dia": "28",
+            "mes": "abril",
+            "versiculo": "Mateus 11:28",
+            "texto": "Vinde a mim, todos os que estais cansados e oprimidos, e eu vos aliviarei.",
+            "conselho": "Encontre descanso e refúgio em Cristo nos momentos de cansaço e dificuldade.",
+            "autor": "Criado via Chat GPT para realização de testes"
+        },
+        {
+            "dia": "29",
+            "mes": "abril",
+            "versiculo": "Salmos 37:4",
+            "texto": "Deleita-te também no Senhor, e ele te concederá o que deseja o teu coração.",
+            "conselho": "Encontre prazer e alegria na presença do Senhor, e Ele satisfará os desejos do seu coração.",
+            "autor": "Criado via Chat GPT para realização de testes"
+        },
+        {
+            "dia": "30",
+            "mes": "abril",
+            "versiculo": "2 Coríntios 5:7",
+            "texto": "Porque andamos por fé, e não por vista.",
+            "conselho": "Confie na direção de Deus mesmo quando não puder ver o que está à frente.",
+            "autor": "Criado via Chat GPT para realização de testes"
+        },
+        {
+            "dia": "31",
+            "mes": "abril",
+            "versiculo": "Efésios 4:32",
+            "texto": "Antes sede uns para com os outros benignos, misericordiosos, perdoando-vos uns aos outros, como também Deus vos perdoou em Cristo.",
+            "conselho": "Pratique a bondade, a misericórdia e o perdão, seguindo o exemplo de Cristo.",
+            "autor": "Criado via Chat GPT para realização de testes"
+        }
+    ]
+}
