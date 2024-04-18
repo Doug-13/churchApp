@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { View, Text, StyleSheet, ImageBackground } from 'react-native';
+import { View, Text, StyleSheet, ImageBackground, ScrollView } from 'react-native';
 import axios from 'axios';
 import { AuthContext } from '../../context/auth.js';
 import { baseURL } from '../../../constants/url.js';
@@ -11,17 +11,27 @@ const api = axios.create({
 const GroupDetailScreen = () => {
   const { selectedGroupId } = useContext(AuthContext);
   const [groupData, setGroupData] = useState(null);
+  const [groupMembers, setGroupMembers] = useState([]);
 
   useEffect(() => {
     const fetchGroupData = async () => {
       try {
         const response = await api.get(`/groups/grupo/${selectedGroupId}`);
+        const membersResponse = await api.get(`/pessoasGroups/${selectedGroupId}`);
         const responseData = response.data;
+        const membersData = membersResponse.data;
+        console.log(responseData)
+        console.log(membersData)
+
         if (responseData.success && responseData.data && responseData.data.length > 0) {
           const data = responseData.data[0]; // Os dados estão dentro do primeiro elemento do array
           setGroupData(data);
         } else {
           console.error('Data is missing');
+        }
+
+        if (membersData.success) {
+          setGroupMembers(membersData.data || []);
         }
       } catch (error) {
         console.error('Error fetching data:', error);
@@ -40,63 +50,74 @@ const GroupDetailScreen = () => {
   }
 
   return (
-    <View style={styles.container}>
-      <ImageBackground source={require('../../../assets/Logo.png')} style={styles.image}>
-        <View style={styles.overlay}>
-          <Text style={styles.title}>{groupData.nome_do_grupo}</Text>
-        </View>
-      </ImageBackground>
-      <View style={styles.content}>
-        <View style={[styles.section, { backgroundColor: '#FFF7E0' }]}>
-          <Text style={[styles.sectionTitle, { color: 'black' }]}>Informações do Grupo</Text>
-          <View style={styles.infoContainer}>
-            <Text style={styles.label}>ID do Grupo:</Text>
-            <Text style={styles.value}>{groupData.id_grupo}</Text>
+    <ScrollView contentContainerStyle={styles.scrollViewContent}>
+      <View style={styles.container}>
+        <ImageBackground source={require('../../../assets/Logo.png')} style={styles.image}>
+          <View style={styles.overlay}>
+            <Text style={styles.title}>{groupData.nome_do_grupo}</Text>
           </View>
-          <View style={styles.infoContainer}>
-            <Text style={styles.label}>Líder:</Text>
-            <Text style={styles.value}>{groupData.nome_do_lider}</Text>
-          </View>
-          {groupData.nome_do_vice_lider && (
+        </ImageBackground>
+        <View style={styles.content}>
+          <View style={[styles.section, { backgroundColor: '#FFF7E0' }]}>
+            <Text style={[styles.sectionTitle, { color: 'black' }]}>Informações do Grupo</Text>
             <View style={styles.infoContainer}>
-              <Text style={styles.label}>Vice-Líder:</Text>
-              <Text style={styles.value}>{groupData.nome_do_vice_lider}</Text>
+              <Text style={styles.label}>ID do Grupo:</Text>
+              <Text style={styles.value}>{groupData.id_grupo}</Text>
             </View>
-          )}
-          <View style={styles.infoContainer}>
-            <Text style={styles.label}>Descrição:</Text>
-            <Text style={styles.value}>{groupData.descricao_grupo}</Text>
+            <View style={styles.infoContainer}>
+              <Text style={styles.label}>Líder:</Text>
+              <Text style={styles.value}>{groupData.nome_do_lider}</Text>
+            </View>
+            {groupData.nome_do_vice_lider && (
+              <View style={styles.infoContainer}>
+                <Text style={styles.label}>Vice-Líder:</Text>
+                <Text style={styles.value}>{groupData.nome_do_vice_lider}</Text>
+              </View>
+            )}
+            <View style={styles.infoContainer}>
+              <Text style={styles.label}>Descrição:</Text>
+              <Text style={styles.value}>{groupData.descricao_grupo}</Text>
+            </View>
+            <View style={styles.infoContainer}>
+              <Text style={styles.label}>Data de Lançamento:</Text>
+              <Text style={styles.value}>{new Date(groupData.data_lancamento).toLocaleDateString()}</Text>
+            </View>
           </View>
-          <View style={styles.infoContainer}>
-            <Text style={styles.label}>Data de Lançamento:</Text>
-            <Text style={styles.value}>{new Date(groupData.data_lancamento).toLocaleDateString()}</Text>
+          <View style={[styles.section, { backgroundColor: '#FFFFE0' }]}>
+            <Text style={[styles.sectionTitle, { color: 'black' }]}>Endereço</Text>
+            <View style={styles.infoContainer}>
+              <Text style={styles.label}>Endereço:</Text>
+              <Text style={styles.value}>{groupData.endereco || 'Não especificado'}</Text>
+            </View>
+            <View style={styles.infoContainer}>
+              <Text style={styles.label}>Bairro:</Text>
+              <Text style={styles.value}>{groupData.bairro || 'Não especificado'}</Text>
+            </View>
+            <View style={styles.infoContainer}>
+              <Text style={styles.label}>Número:</Text>
+              <Text style={styles.value}>{groupData.numero || 'Não especificado'}</Text>
+            </View>
+            <View style={styles.infoContainer}>
+              <Text style={styles.label}>Cidade:</Text>
+              <Text style={styles.value}>{groupData.cidade || 'Não especificado'}</Text>
+            </View>
+            <View style={styles.infoContainer}>
+              <Text style={styles.label}>Estado:</Text>
+              <Text style={styles.value}>{groupData.estado || 'Não especificado'}</Text>
+            </View>
           </View>
-        </View>
-        <View style={[styles.section, { backgroundColor: '#FFFFE0' }]}>
-          <Text style={[styles.sectionTitle, { color: 'black' }]}>Endereço</Text>
-          <View style={styles.infoContainer}>
-            <Text style={styles.label}>Endereço:</Text>
-            <Text style={styles.value}>{groupData.endereco || 'Não especificado'}</Text>
-          </View>
-          <View style={styles.infoContainer}>
-            <Text style={styles.label}>Bairro:</Text>
-            <Text style={styles.value}>{groupData.bairro || 'Não especificado'}</Text>
-          </View>
-          <View style={styles.infoContainer}>
-            <Text style={styles.label}>Número:</Text>
-            <Text style={styles.value}>{groupData.numero || 'Não especificado'}</Text>
-          </View>
-          <View style={styles.infoContainer}>
-            <Text style={styles.label}>Cidade:</Text>
-            <Text style={styles.value}>{groupData.cidade || 'Não especificado'}</Text>
-          </View>
-          <View style={styles.infoContainer}>
-            <Text style={styles.label}>Estado:</Text>
-            <Text style={styles.value}>{groupData.estado || 'Não especificado'}</Text>
+          <View style={[styles.section, { backgroundColor: '#FFFFE0' }]}>
+            <Text style={[styles.sectionTitle, { color: 'black' }]}>Membros do Grupo</Text>
+            {groupMembers.map((member, index) => (
+              <View style={styles.infoContainer} key={index}>
+                {/* <Text style={styles.label}>- </Text> */}
+                <Text style={styles.value}>- {member.nome_completo}</Text>
+              </View>
+            ))}
           </View>
         </View>
       </View>
-    </View>
+    </ScrollView>
   );
 };
 
@@ -104,6 +125,9 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#FFFFFF',
+  },
+  scrollViewContent: {
+    flexGrow: 1,
   },
   image: {
     height: 200, // Altura da imagem
@@ -123,7 +147,6 @@ const styles = StyleSheet.create({
     color: '#FFFFFF', // Cor do texto sobre a imagem
   },
   content: {
-    flex: 1,
     paddingHorizontal: 20,
     paddingTop: 20,
   },
@@ -143,7 +166,7 @@ const styles = StyleSheet.create({
   },
   label: {
     fontWeight: 'bold',
-    width: 120,
+    width: 80,
     color: '#666',
   },
   value: {

@@ -2,14 +2,34 @@ import { Request, Response } from "express";
 import db from '../config/database';
 
 async function listPessoasGroups(req: Request, res: Response) {
-    db.connection.query('SELECT * FROM PRODUCTS', (err, results) => {
-        console.log(results)
-        res.json({
-            success: true,
-            message: 'Listagem realizada com sucesso.',
-            data: results
-        });
-    })
+    const id_grupo = req.params.id_grupo;
+    db.connection.query(
+        `SELECT CONCAT(u.nome, ' ', u.sobrenome) AS nome_completo,
+                DATE_FORMAT(pg.data_lancamento, '%d/%m/%Y') AS data_de_entrada_no_grupo
+        FROM 
+            pessoasgrupos pg
+        LEFT JOIN 
+            users u ON pg.id_users = u.id
+        WHERE 
+            pg.id_grupo = ?;`,
+        [id_grupo],
+        (err, results) => {
+            if (err) {
+                console.error(err);
+                res.status(500).json({
+                    success: false,
+                    message: 'Ocorreu um erro ao listar as pessoas do grupo.'
+                });
+            } else {
+                console.log(results);
+                res.json({
+                    success: true,
+                    message: 'Listagem realizada com sucesso.',
+                    data: results
+                });
+            }
+        }
+    );
 }
 
 async function createPessoasGroups(req: Request, res: Response) {
@@ -28,12 +48,12 @@ async function createPessoasGroups(req: Request, res: Response) {
         console.log('Cadastro realizado com sucesso:', results);
         res.status(200).send('Cadastro realizado com sucesso');
     });
-}   
+}
 
 async function editPessoasGroups(req: Request, res: Response) {
     const idUser = req.params.id;
     const querysql = `UPDATE products SET DS_NAME = ?,DS_DESCRIPTION = ?, NM_VALUE = ?, DS_BRAND = ?,DS_STATUS = ? WHERE id_product = ?`;
-    
+
     const params = Array(
         req.body.DS_NAME,
         req.body.DS_DESCRIPTION,

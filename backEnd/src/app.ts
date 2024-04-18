@@ -12,6 +12,7 @@ import financialRoutes from './routes/financialRoutes';
 import churchRegistersRoutes from './routes/churchRegistersRoutes';
 import groupsRoutes from './routes/groupsRoutes';
 import pessoasGroupsRoutes from './routes/pessoasGroupsRoutes';
+import presenceRoutes from './routes/presenceRoutes';
 
 app.use('/api/', churchRegistersRoutes);
 app.use('/api/', churchReportsRoutes);
@@ -20,5 +21,6 @@ app.use('/api/', visitorsRoutes);
 app.use('/api/', usersRoutes);
 app.use('/api/', groupsRoutes);
 app.use('/api/', pessoasGroupsRoutes);
+app.use('/api/', presenceRoutes);
 
 export default app;

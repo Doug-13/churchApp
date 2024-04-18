@@ -1,34 +1,74 @@
-import React, { useState } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import axios from 'axios';
+import { AuthContext } from '../../context/auth.js';
+import { baseURL } from '../../../constants/url.js';
 
-const MeetingData = [
-  { id: 1, title: 'Reunião 1', details: 'Detalhes da Reunião 1' },
-  { id: 2, title: 'Reunião 2', details: 'Detalhes da Reunião 2' },
-  { id: 3, title: 'Reunião 3', details: 'Detalhes da Reunião 3' },
-];
+const api = axios.create({
+  baseURL,
+});
 
 const Meeting = () => {
+  const { selectedGroupId } = useContext(AuthContext);
   const [expandedMeeting, setExpandedMeeting] = useState(null);
+  const [groupData, setGroupData] = useState([]);
 
-  const handleMeetingPress = (id) => {
-    if (expandedMeeting === id) {
+  useEffect(() => {
+    const fetchGroupData = async () => {
+      try {
+        const response = await api.get(`/presence/${selectedGroupId}`);
+        const responseData = response.data;
+
+        if (responseData.success && responseData.data && responseData.data.length > 0) {
+          setGroupData(responseData.data);
+        } else {
+          console.error('Data is missing');
+        }
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchGroupData();
+  }, [selectedGroupId]);
+
+  const handleMeetingPress = (index) => {
+    if (expandedMeeting === index) {
       setExpandedMeeting(null);
     } else {
-      setExpandedMeeting(id);
+      setExpandedMeeting(index);
     }
   };
 
   return (
     <View style={styles.container}>
-      {MeetingData.map((meeting) => (
+      {groupData.map((meeting, index) => (
         <TouchableOpacity
-          key={meeting.id}
-          style={styles.meetingBlock}
-          onPress={() => handleMeetingPress(meeting.id)}
+          key={index}
+          style={[styles.meetingBlock, { backgroundColor: index % 2 === 0 ? '#E1ECF4' : '#D1E9E7' }]}
+          onPress={() => handleMeetingPress(index)}
         >
-          <Text style={styles.meetingTitle}>{meeting.title}</Text>
-          {expandedMeeting === meeting.id && (
-            <Text style={styles.meetingDetails}>{meeting.details}</Text>
+          <Text style={styles.meetingTitle}><Text style={styles.boldText}>{meeting.data_reuniao}</Text></Text>
+          <View style={styles.detailRow}>
+            <Text style={[styles.detailText, styles.boldText]}>Total de Participantes: </Text>
+            <Text style={styles.detailText}>{parseInt(meeting.total_membros) + parseInt(meeting.total_visitantes)}</Text>
+          </View>
+          {expandedMeeting === index && (
+            <View style={styles.detailsContainer}>
+
+              <View style={styles.detailRow}>
+                <Text style={[styles.detailText, styles.boldText]}>Membros Participantes:</Text>
+              </View>
+              {meeting.membros.split(',').map((membro, idx) => (
+                <Text key={idx} style={styles.detailText}>- {membro.trim()}</Text>
+              ))}
+              <View style={styles.detailRow}>
+                <Text style={[styles.detailText, styles.boldText]}>Visitantes:</Text>
+              </View>
+              {meeting.visitantes.split(',').map((visitante, idx) => (
+                <Text key={idx} style={styles.detailText}>- {visitante.trim()}</Text>
+              ))}
+            </View>
           )}
         </TouchableOpacity>
       ))}
@@ -42,23 +82,41 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     padding: 20,
+    backgroundColor: '#F0F4F8',
   },
   meetingBlock: {
     marginBottom: 10,
     padding: 10,
-    backgroundColor: '#f0f0f0',
-    borderRadius: 5,
+    borderRadius: 10,
     width: '100%',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
   },
   meetingTitle: {
     fontSize: 18,
-    fontWeight: 'bold',
+    marginBottom: 5,
+    color: '#2E4057',
+  },
+  detailsContainer: {
+    marginTop: 10,
+  },
+  detailRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
     marginBottom: 5,
   },
-  meetingDetails: {
+  detailText: {
     fontSize: 16,
-    marginTop: 5,
-    color: 'blue',
+    color: '#2E4057',
+  },
+  boldText: {
+    fontWeight: 'bold',
   },
 });
 

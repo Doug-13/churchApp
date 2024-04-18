@@ -61,6 +61,7 @@ async function listGroup(req: Request, res: Response) {
 
 
 
+
 async function creategroups(req: Request, res: Response) {
     const querysql = `INSERT INTO grupos (nome_grupo, descricao_grupo, id_lider, id_vicelider, id_criador, id_igreja, data_lancamento, endereco, bairro, numero, cidade, estado) 
     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
