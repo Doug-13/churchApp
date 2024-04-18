@@ -115,7 +115,7 @@ CREATE TABLE `pessoasgrupos` (
   KEY `id_grupo` (`id_grupo`),
   CONSTRAINT `pessoasgrupos_ibfk_1` FOREIGN KEY (`id_users`) REFERENCES `users` (`id`),
   CONSTRAINT `pessoasgrupos_ibfk_2` FOREIGN KEY (`id_grupo`) REFERENCES `grupos` (`id_grupo`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -124,6 +124,7 @@ CREATE TABLE `pessoasgrupos` (
 
 LOCK TABLES `pessoasgrupos` WRITE;
 /*!40000 ALTER TABLE `pessoasgrupos` DISABLE KEYS */;
+INSERT INTO `pessoasgrupos` VALUES (1,69,10,'2023-05-12 12:00:00'),(2,76,10,'2023-06-20 14:30:00'),(3,84,10,'2023-07-05 17:45:00'),(4,89,10,'2023-08-10 13:00:00'),(5,90,10,'2023-08-25 19:20:00'),(6,91,11,'2023-09-03 11:15:00'),(7,92,11,'2023-09-18 16:10:00');
 /*!40000 ALTER TABLE `pessoasgrupos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -136,15 +137,16 @@ DROP TABLE IF EXISTS `presenca`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `presenca` (
   `id_presenca` int NOT NULL AUTO_INCREMENT,
-  `id_usuario` int NOT NULL,
-  `id_grupo` int NOT NULL,
-  `data_presenca` datetime DEFAULT CURRENT_TIMESTAMP,
+  `id_user` int DEFAULT NULL,
+  `id_grupo` int DEFAULT NULL,
+  `data_presenca` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `nome_visitante` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id_presenca`),
-  KEY `id_usuario` (`id_usuario`),
+  KEY `id_user` (`id_user`),
   KEY `id_grupo` (`id_grupo`),
-  CONSTRAINT `presenca_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `users` (`id`),
+  CONSTRAINT `presenca_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `pessoasgrupos` (`id_users`),
   CONSTRAINT `presenca_ibfk_2` FOREIGN KEY (`id_grupo`) REFERENCES `grupos` (`id_grupo`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=43 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -153,6 +155,7 @@ CREATE TABLE `presenca` (
 
 LOCK TABLES `presenca` WRITE;
 /*!40000 ALTER TABLE `presenca` DISABLE KEYS */;
+INSERT INTO `presenca` VALUES (1,69,10,'2024-04-01 12:00:00',NULL),(2,76,10,'2024-04-01 12:00:00',NULL),(3,84,10,'2024-04-01 12:00:00',NULL),(4,89,10,'2024-04-01 12:00:00',NULL),(5,90,10,'2024-04-01 12:00:00',NULL),(6,69,10,'2024-04-08 12:00:00',NULL),(7,76,10,'2024-04-08 12:00:00',NULL),(8,84,10,'2024-04-08 12:00:00',NULL),(9,89,10,'2024-04-08 12:00:00',NULL),(10,90,10,'2024-04-08 12:00:00',NULL),(11,69,10,'2024-04-15 12:00:00',NULL),(12,76,10,'2024-04-15 12:00:00',NULL),(13,84,10,'2024-04-15 12:00:00',NULL),(14,89,10,'2024-04-15 12:00:00',NULL),(15,90,10,'2024-04-15 12:00:00',NULL),(16,91,11,'2024-04-02 13:00:00',NULL),(17,92,11,'2024-04-02 13:00:00',NULL),(18,91,11,'2024-04-09 13:00:00',NULL),(19,92,11,'2024-04-09 13:00:00',NULL),(20,91,11,'2024-04-16 13:00:00',NULL),(21,92,11,'2024-04-16 13:00:00',NULL),(22,NULL,10,'2024-04-01 12:00:00','Visitante 1'),(23,NULL,10,'2024-04-01 12:00:00','Visitante 2'),(24,NULL,10,'2024-04-01 12:00:00','Visitante 3'),(25,NULL,10,'2024-04-01 12:00:00','Visitante 4'),(26,NULL,10,'2024-04-01 12:00:00','Visitante 5'),(27,NULL,10,'2024-04-08 12:00:00','Visitante 6'),(28,NULL,10,'2024-04-08 12:00:00','Visitante 7'),(29,NULL,10,'2024-04-08 12:00:00','Visitante 8'),(30,NULL,10,'2024-04-08 12:00:00','Visitante 9'),(31,NULL,10,'2024-04-08 12:00:00','Visitante 10'),(32,NULL,10,'2024-04-15 12:00:00','Visitante 11'),(33,NULL,10,'2024-04-15 12:00:00','Visitante 12'),(34,NULL,10,'2024-04-15 12:00:00','Visitante 13'),(35,NULL,10,'2024-04-15 12:00:00','Visitante 14'),(36,NULL,10,'2024-04-15 12:00:00','Visitante 15'),(37,NULL,11,'2024-04-02 13:00:00','Visitante A'),(38,NULL,11,'2024-04-02 13:00:00','Visitante B'),(39,NULL,11,'2024-04-09 13:00:00','Visitante C'),(40,NULL,11,'2024-04-09 13:00:00','Visitante D'),(41,NULL,11,'2024-04-16 13:00:00','Visitante E'),(42,NULL,11,'2024-04-16 13:00:00','Visitante F');
 /*!40000 ALTER TABLE `presenca` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -318,4 +321,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-04-16 22:44:39
+-- Dump completed on 2024-04-18  1:47:37
