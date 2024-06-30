@@ -46,3 +46,23 @@ npm start -- --reset-cache
 
  ### Aceitar os termos 
 
+
+### telas para liberar
+
+Fluxo de caixa
+    Visualizar
+    criar
+    Editar
+    excluir
+
+Agenda
+    Visualizar (todos)
+    Criar
+    Editar
+    excluir
+Grupos
+    Visualizar (apenas seu grupo)
+    Criar
+    Editar
+    excluir   
+

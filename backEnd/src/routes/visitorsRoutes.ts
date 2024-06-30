@@ -6,10 +6,11 @@ import visitorsController from "../controller/visitorsController";
 // router.get('/visitors/:id_igreja/:id',  visitorsController.userVisitor);
 routes.get('/visitors/:id_igreja',  visitorsController.listvisitors);
 routes.get('/visitors/visitors_list/:id_igreja',  visitorsController.listVisitorsDay);
+routes.get('/visitors/visitors_groups/:id_grupo',  visitorsController.listVisitorsGroups);
 
 //Cadastrar usuario
 routes.post('/visitors/:id_igreja',visitorsController.createvisitors);
-
+routes.post('/visitor/visitors_group/',visitorsController.createvisitorsGroups);
 //Editar usuario
 
 routes.put('/visitor/:id',visitorsController.editVisitor);

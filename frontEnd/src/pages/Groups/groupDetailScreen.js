@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { View, Text, StyleSheet, ImageBackground, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, ImageBackground, ScrollView, TouchableOpacity } from 'react-native';
+import { AntDesign } from '@expo/vector-icons';
 import axios from 'axios';
 import { AuthContext } from '../../context/auth.js';
 import { baseURL } from '../../../constants/url.js';
@@ -8,7 +9,7 @@ const api = axios.create({
   baseURL,
 });
 
-const GroupDetailScreen = () => {
+const GroupDetailScreen = ({ navigation }) => {
   const { selectedGroupId } = useContext(AuthContext);
   const [groupData, setGroupData] = useState(null);
   const [groupMembers, setGroupMembers] = useState([]);
@@ -20,8 +21,8 @@ const GroupDetailScreen = () => {
         const membersResponse = await api.get(`/pessoasGroups/${selectedGroupId}`);
         const responseData = response.data;
         const membersData = membersResponse.data;
-        console.log(responseData)
-        console.log(membersData)
+        console.log(responseData);
+        console.log(membersData);
 
         if (responseData.success && responseData.data && responseData.data.length > 0) {
           const data = responseData.data[0]; // Os dados estão dentro do primeiro elemento do array
@@ -55,6 +56,12 @@ const GroupDetailScreen = () => {
         <ImageBackground source={require('../../../assets/Logo.png')} style={styles.image}>
           <View style={styles.overlay}>
             <Text style={styles.title}>{groupData.nome_do_grupo}</Text>
+            <TouchableOpacity
+              style={styles.editButton}
+              onPress={() => navigation.navigate('EditGroup', { groupId: selectedGroupId })}
+            >
+              <AntDesign name="edit" size={24} color="white" />
+            </TouchableOpacity>
           </View>
         </ImageBackground>
         <View style={styles.content}>
@@ -110,7 +117,6 @@ const GroupDetailScreen = () => {
             <Text style={[styles.sectionTitle, { color: 'black' }]}>Membros do Grupo</Text>
             {groupMembers.map((member, index) => (
               <View style={styles.infoContainer} key={index}>
-                {/* <Text style={styles.label}>- </Text> */}
                 <Text style={styles.value}>- {member.nome_completo}</Text>
               </View>
             ))}
@@ -140,11 +146,17 @@ const styles = StyleSheet.create({
     height: '100%',
     justifyContent: 'center',
     alignItems: 'center',
+    position: 'relative',
   },
   title: {
     fontSize: 24,
     fontWeight: 'bold',
     color: '#FFFFFF', // Cor do texto sobre a imagem
+  },
+  editButton: {
+    position: 'absolute',
+    top: 20,
+    right: 10,
   },
   content: {
     paddingHorizontal: 20,

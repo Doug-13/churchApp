@@ -7,7 +7,7 @@ import { AuthContext } from '../../context/auth.js';
 import { baseURL } from '../../../constants/url.js';
 
 const api = axios.create({
-  baseURL,
+    baseURL,
 });
 
 const GroupCreationScreen = () => {
@@ -28,7 +28,7 @@ const GroupCreationScreen = () => {
     useEffect(() => {
         const fetchChurches = async () => {
             try {
-                const response = await api.get(baseURL +`users/church/${churchData.id}`);
+                const response = await api.get(baseURL + `users/church/${churchData.id}`);
                 const responseData = response.data;
 
                 if (responseData && responseData.data && responseData.data.length > 0) {
@@ -122,99 +122,101 @@ const GroupCreationScreen = () => {
     };
 
     return (
-        <View style={styles.container}>
-            <Text style={styles.header}>Criar Grupo</Text>
-            <Text style={styles.label}>Nome do Grupo:</Text>
-            <TextInput
-                style={styles.input}
-                placeholder="Nome do Grupo"
-                value={groupName}
-                onChangeText={text => setGroupName(text)}
-            />
-            <Text style={styles.label}>Descrição do Grupo:</Text>
-            <TextInput
-                style={styles.input}
-                placeholder="Descreva o objetivo do grupo"
-                value={groupDescription}
-                onChangeText={text => setGroupDescription(text)}
-            />
-            <Text style={styles.label}>Endereço:</Text>
-            <TextInput
-                style={styles.input}
-                placeholder="Endereço"
-                value={endereco}
-                onChangeText={text => setEndereco(text)}
-            />
-            <Text style={styles.label}>Bairro:</Text>
-            <TextInput
-                style={styles.input}
-                placeholder="Bairro"
-                value={bairro}
-                onChangeText={text => setBairro(text)}
-            />
-            <Text style={styles.label}>Número:</Text>
-            <TextInput
-                style={styles.input}
-                placeholder="Número"
-                value={numero}
-                onChangeText={text => setNumero(text)}
-            />
-            <Text style={styles.label}>Cidade:</Text>
-            <TextInput
-                style={styles.input}
-                placeholder="Cidade"
-                value={cidade}
-                onChangeText={text => setCidade(text)}
-            />
-            <Text style={styles.label}>Estado:</Text>
-            <TextInput
-                style={styles.input}
-                placeholder="Estado"
-                value={estado}
-                onChangeText={text => setEstado(text)}
-            />
-            <Text style={styles.label}>Líder:</Text>
-            <Picker
-                selectedValue={leader}
-                style={styles.picker}
-                onValueChange={(itemValue, itemIndex) => setLeader(itemValue)}
-            >
-                <Picker.Item label="Selecione o líder" value={null} />
-                {peopleChurch.map((user, index) => (
-                    <Picker.Item label={`${user.nome} ${user.sobrenome}`} value={user} key={index} />
-                ))}
-            </Picker>
-            <Text style={styles.label}>Vice-Líder:</Text>
-            <Picker
-                selectedValue={viceLeader}
-                style={styles.picker}
-                onValueChange={(itemValue, itemIndex) => setViceLeader(itemValue)}
-            >
-                <Picker.Item label="Selecione o vice-líder" value={null} />
-                {peopleChurch.map((user, index) => (
-                    <Picker.Item label={`${user.nome} ${user.sobrenome}`} value={user} key={index} />
-                ))}
-            </Picker>
-            <Text style={styles.label}>Escolha os membros do grupo:</Text>
-            <ScrollView style={styles.scrollView}>
-                {peopleChurch.map((user, index) => (
-                    <TouchableOpacity
-                        key={index}
-                        style={[
-                            styles.userItem,
-                            selectedUsers.some(u => u.nome === user.nome && u.sobrenome === user.sobrenome) && styles.selectedUserItem,
-                            isLeaderOrViceLeader(user) && styles.leaderOrViceLeaderItem // Novo estilo para líder ou vice-líder
-                        ]}
-                        onPress={() => toggleUserSelection(user)}
-                    >
-                        <Text style={isLeaderOrViceLeader(user) ? styles.leaderOrViceLeaderText : null}>{user.nome} {user.sobrenome}</Text>
-                    </TouchableOpacity>
-                ))}
-            </ScrollView>
-            <TouchableOpacity style={styles.addButton} onPress={handleSave}>
-                <Text style={styles.addButtonText}>Salvar</Text>
-            </TouchableOpacity>
-        </View>
+        <ScrollView>
+            <View style={styles.container}>
+                <Text style={styles.header}>Criar Grupo</Text>
+                <Text style={styles.label}>Nome do Grupo:</Text>
+                <TextInput
+                    style={styles.input}
+                    placeholder="Nome do Grupo"
+                    value={groupName}
+                    onChangeText={text => setGroupName(text)}
+                />
+                <Text style={styles.label}>Descrição do Grupo:</Text>
+                <TextInput
+                    style={styles.input}
+                    placeholder="Descreva o objetivo do grupo"
+                    value={groupDescription}
+                    onChangeText={text => setGroupDescription(text)}
+                />
+                <Text style={styles.label}>Endereço:</Text>
+                <TextInput
+                    style={styles.input}
+                    placeholder="Endereço"
+                    value={endereco}
+                    onChangeText={text => setEndereco(text)}
+                />
+                <Text style={styles.label}>Bairro:</Text>
+                <TextInput
+                    style={styles.input}
+                    placeholder="Bairro"
+                    value={bairro}
+                    onChangeText={text => setBairro(text)}
+                />
+                <Text style={styles.label}>Número:</Text>
+                <TextInput
+                    style={styles.input}
+                    placeholder="Número"
+                    value={numero}
+                    onChangeText={text => setNumero(text)}
+                />
+                <Text style={styles.label}>Cidade:</Text>
+                <TextInput
+                    style={styles.input}
+                    placeholder="Cidade"
+                    value={cidade}
+                    onChangeText={text => setCidade(text)}
+                />
+                <Text style={styles.label}>Estado:</Text>
+                <TextInput
+                    style={styles.input}
+                    placeholder="Estado"
+                    value={estado}
+                    onChangeText={text => setEstado(text)}
+                />
+                <Text style={styles.label}>Líder:</Text>
+                <Picker
+                    selectedValue={leader}
+                    style={styles.picker}
+                    onValueChange={(itemValue, itemIndex) => setLeader(itemValue)}
+                >
+                    <Picker.Item label="Selecione o líder" value={null} />
+                    {peopleChurch.map((user, index) => (
+                        <Picker.Item label={`${user.nome} ${user.sobrenome}`} value={user} key={index} />
+                    ))}
+                </Picker>
+                <Text style={styles.label}>Vice-Líder:</Text>
+                <Picker
+                    selectedValue={viceLeader}
+                    style={styles.picker}
+                    onValueChange={(itemValue, itemIndex) => setViceLeader(itemValue)}
+                >
+                    <Picker.Item label="Selecione o vice-líder" value={null} />
+                    {peopleChurch.map((user, index) => (
+                        <Picker.Item label={`${user.nome} ${user.sobrenome}`} value={user} key={index} />
+                    ))}
+                </Picker>
+                <Text style={styles.label}>Escolha os membros do grupo:</Text>
+                <ScrollView style={styles.scrollView}>
+                    {peopleChurch.map((user, index) => (
+                        <TouchableOpacity
+                            key={index}
+                            style={[
+                                styles.userItem,
+                                selectedUsers.some(u => u.nome === user.nome && u.sobrenome === user.sobrenome) && styles.selectedUserItem,
+                                isLeaderOrViceLeader(user) && styles.leaderOrViceLeaderItem // Novo estilo para líder ou vice-líder
+                            ]}
+                            onPress={() => toggleUserSelection(user)}
+                        >
+                            <Text style={isLeaderOrViceLeader(user) ? styles.leaderOrViceLeaderText : null}>{user.nome} {user.sobrenome}</Text>
+                        </TouchableOpacity>
+                    ))}
+                </ScrollView>
+                <TouchableOpacity style={styles.addButton} onPress={handleSave}>
+                    <Text style={styles.addButtonText}>Salvar</Text>
+                </TouchableOpacity>
+            </View>
+        </ScrollView>
     );
 };
 

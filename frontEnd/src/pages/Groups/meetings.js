@@ -1,17 +1,31 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
 import axios from 'axios';
 import { AuthContext } from '../../context/auth.js';
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
+import { useNavigation } from '@react-navigation/native'; // Importação adicionada
+import LaunchMeeting from './launchMeeting.js';
+
 import { baseURL } from '../../../constants/url.js';
+
+const Tab = createMaterialTopTabNavigator();
 
 const api = axios.create({
   baseURL,
 });
 
-const Meeting = () => {
+const Meeting = ({ navigation }) => {
   const { selectedGroupId } = useContext(AuthContext);
   const [expandedMeeting, setExpandedMeeting] = useState(null);
   const [groupData, setGroupData] = useState([]);
+  const [showNewMeetingForm, setShowNewMeetingForm] = useState(false);
+  const [newMeetingData, setNewMeetingData] = useState({
+    date: '',
+    totalMembers: '',
+    totalVisitors: '',
+    members: '',
+    visitors: '',
+  });
 
   useEffect(() => {
     const fetchGroupData = async () => {
@@ -40,8 +54,9 @@ const Meeting = () => {
     }
   };
 
-  return (
+  return (<ScrollView>
     <View style={styles.container}>
+
       {groupData.map((meeting, index) => (
         <TouchableOpacity
           key={index}
@@ -55,26 +70,54 @@ const Meeting = () => {
           </View>
           {expandedMeeting === index && (
             <View style={styles.detailsContainer}>
-
               <View style={styles.detailRow}>
                 <Text style={[styles.detailText, styles.boldText]}>Membros Participantes:</Text>
               </View>
-              {meeting.membros.split(',').map((membro, idx) => (
+              {meeting.membros && meeting.membros.split(',').map((membro, idx) => (
                 <Text key={idx} style={styles.detailText}>- {membro.trim()}</Text>
               ))}
               <View style={styles.detailRow}>
                 <Text style={[styles.detailText, styles.boldText]}>Visitantes:</Text>
               </View>
-              {meeting.visitantes.split(',').map((visitante, idx) => (
+              {meeting.visitantes && meeting.visitantes.split(',').map((visitante, idx) => (
                 <Text key={idx} style={styles.detailText}>- {visitante.trim()}</Text>
               ))}
             </View>
           )}
         </TouchableOpacity>
       ))}
+
+
     </View>
+  </ScrollView>
   );
 };
+
+// const LaunchMeeting = () => {
+//   const navigation = useNavigation();
+
+//   const handleLaunchMeeting = () => {
+//     navigation.navigate('Lançar Encontros');
+//   };
+
+//   return (
+//     <View style={styles.container}>
+//       <TouchableOpacity onPress={handleLaunchMeeting}>
+//         <Text>Lançar Encontros</Text>
+//       </TouchableOpacity>
+//     </View>
+//   );
+// };
+
+const MeetingTabs = () => {
+  return (
+    <Tab.Navigator tabBarPosition="top">
+      <Tab.Screen name="Reuniões" component={Meeting} options={{ headerShown: false }} />
+      <Tab.Screen name="Lançar Encontros" component={LaunchMeeting} options={{ headerShown: false }} />
+    </Tab.Navigator>
+  );
+};
+
 
 const styles = StyleSheet.create({
   container: {
@@ -83,6 +126,18 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     padding: 20,
     backgroundColor: '#F0F4F8',
+  },
+  addButton: {
+    backgroundColor: 'blue',
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 50,
+    width: 50,
+    height: 50,
+    position: 'absolute',
+    bottom: 20,
+    right: 20,
+    elevation: 5,
   },
   meetingBlock: {
     marginBottom: 10,
@@ -120,4 +175,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Meeting;
+export default MeetingTabs;

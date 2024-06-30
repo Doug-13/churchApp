@@ -3,7 +3,22 @@ import db from '../config/database';
 
 async function listAllGroups(req: Request, res: Response) {
     const id_igreja = req.params.id_igreja;
-    db.connection.query('SELECT * FROM grupos WHERE id_igreja = ?', [id_igreja], (err, results) => {
+    db.connection.query(`
+      SELECT
+            g.id_grupo,
+            g.nome_grupo,
+            g.descricao_grupo,
+            CONCAT(ul.nome,' ',ul.sobrenome) AS nome_lider,
+            CONCAT(uv.nome,' ',uv.sobrenome) AS vice_lider
+        FROM 
+            grupos AS g
+        LEFT JOIN
+            users AS ul ON g.id_lider = ul.id
+        LEFT JOIN
+            users AS uv ON g.id_vicelider = uv.id
+        WHERE 
+            g.id_igreja = ?;`
+    , [id_igreja], (err, results) => {
         if (err) {
             console.error("Erro ao executar a consulta:", err);
             return res.status(500).json({
@@ -26,6 +41,8 @@ async function listGroup(req: Request, res: Response) {
     db.connection.query(
         `SELECT g.nome_grupo AS nome_do_grupo, 
             g.id_grupo,
+            l.nome,
+            l.sobrenome,
             IFNULL(CONCAT(l.nome, ' ', l.sobrenome), '') AS nome_do_lider,
             IFNULL(CONCAT(vl.nome, ' ', vl.sobrenome), '') AS nome_do_vice_lider,
             g.descricao_grupo,
@@ -94,29 +111,92 @@ async function creategroups(req: Request, res: Response) {
     });
 }
 
-
-
-
 async function editgroup(req: Request, res: Response) {
-    const idUser = req.params.id;
-    const querysql = `UPDATE products SET DS_NAME = ?,DS_DESCRIPTION = ?, NM_VALUE = ?, DS_BRAND = ?,DS_STATUS = ? WHERE id_product = ?`;
+    const idGrupo = req.params.id as string; // Obtendo o ID do grupo dos parâmetros da requisição
+    const {
+        nome_grupo,
+        descricao_grupo,
+        id_lider,
+        id_vicelider,
+        id_criador,
+        id_igreja,
+        endereco,
+        bairro,
+        numero,
+        cidade,
+        estado
+    } = req.body;
 
-    const params = Array(
-        req.body.DS_NAME,
-        req.body.DS_DESCRIPTION,
-        req.body.NM_VALUE,
-        req.body.DS_BRAND,
-        req.body.DS_STATUS,
-        req.params.id
-    );
-    db.connection.query(querysql, params, (err, results) => {
+    try {
+        // Comando SQL para atualizar o grupo na tabela `grupos`
+        const querysql = `
+            UPDATE grupos
+            SET nome_grupo = ?,
+                descricao_grupo = ?,
+                id_lider = ?,
+                id_vicelider = ?,
+                id_criador = ?,
+                id_igreja = ?,
+                endereco = ?,
+                bairro = ?,
+                numero = ?,
+                cidade = ?,
+                estado = ?
+            WHERE id_grupo = ?`;
+
+        // Parâmetros para a consulta SQL
+        const params = [
+            nome_grupo,
+            descricao_grupo,
+            id_lider,
+            id_vicelider,
+            id_criador,
+            id_igreja,
+            endereco,
+            bairro,
+            numero,
+            cidade,
+            estado,
+            idGrupo // Adicionando o ID do grupo ao final dos parâmetros
+        ];
+
+        // Mostrar os dados que serão enviados para o banco de dados
+        console.log('Dados do grupo a serem atualizados:', {
+            nome_grupo,
+            descricao_grupo,
+            id_lider,
+            id_vicelider,
+            id_criador,
+            id_igreja,
+            endereco,
+            bairro,
+            numero,
+            cidade,
+            estado,
+            idGrupo
+        });
+
+        // Executar a consulta SQL de atualização usando a versão promise do mysql2
+        const [results] = await db.connection.promise().query(querysql, params);
+
+        // Mostrar o resultado da consulta no console
+        console.log('Resultado da atualização:', results);
+
+        // Retornar a resposta em JSON
         res.json({
             success: true,
             message: 'Alteração realizada com sucesso.',
             data: results
         });
-    })
-};
+    } catch (error) {
+        // Em caso de erro, retornar uma mensagem de erro
+        console.error('Erro ao atualizar grupo:', error);
+        res.status(500).json({
+            success: false,
+            message: 'Ocorreu um erro ao atualizar o grupo. Por favor, tente novamente.'
+        });
+    }
+}
 
 async function deletegroup(req: Request, res: Response) {
     const idUser = req.params.id;

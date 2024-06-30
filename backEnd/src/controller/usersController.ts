@@ -64,7 +64,6 @@ async function listNames(req: Request, res: Response) {
     });
 }
 
-
 // Chamar função para mostrar usuários (GET)
 async function getUser(req: Request, res: Response): Promise<void> {
     const userId: number = parseInt(req.params.id);
@@ -99,6 +98,16 @@ async function getUser(req: Request, res: Response): Promise<void> {
 async function getUsersById(req: Request, res: Response): Promise<void> {
     const userId: number = parseInt(req.params.id);
     const churchId: number = parseInt(req.params.id_igreja);
+
+    // Verificar se os parâmetros são válidos
+    if (isNaN(userId) || isNaN(churchId)) {
+        res.status(400).json({
+            success: false,
+            message: 'Parâmetros inválidos: id ou id_igreja não são números válidos.'
+        });
+        return;
+    }
+
     const querySql: string = 'SELECT * FROM USERS WHERE ID_IGREJA = ? AND ID = ?';
 
     db.connection.query(querySql, [churchId, userId], (err, results: RowDataPacket[]) => {
@@ -127,10 +136,9 @@ async function getUsersById(req: Request, res: Response): Promise<void> {
 }
 
 
-
 async function getUsersByChurchId(req: Request, res: Response) {
     const churchId = req.params.id_igreja;
-    const querysql = 'SELECT * FROM USERS WHERE ID_IGREJA = ?';
+    const querysql = 'SELECT * FROM USERS WHERE ID_IGREJA = ? ';
 
     db.connection.query(querysql, [churchId], (err, results: RowDataPacket[]) => {
         if (err) {
@@ -155,6 +163,53 @@ async function getUsersByChurchId(req: Request, res: Response) {
         }
     });
 }
+
+async function getUsersBirthdays(req: Request, res: Response) {
+    const churchId = parseInt(req.params.id_igreja);
+
+    // Exibir o valor de churchId no console
+    console.log("churchId:", churchId);
+
+    // Verificar se o parâmetro id_igreja é válido
+    if (isNaN(churchId)) {
+        res.status(400).json({
+            success: false,
+            message: 'Parâmetro inválido: id_igreja não é um número válido.'
+        });
+        return;
+    }
+
+    const querysql = 
+        `SELECT NOME, SOBRENOME, 
+        DATE_FORMAT(DATA_NASCIMENTO, '%d/%m/%Y') AS DATA_NASCIMENTO_FORMATADA FROM USERS
+        WHERE ID_IGREJA = ? AND 
+        DATA_NASCIMENTO IS NOT NULL`;
+
+    db.connection.query(querysql, [churchId], (err, results: RowDataPacket[]) => {
+        if (err) {
+            console.log("Erro ao buscar usuários:", err);
+            res.status(500).json({
+                success: false,
+                message: 'Erro ao buscar usuários.'
+            });
+        } else {
+            if (results.length > 0) {
+                res.json({
+                    success: true,
+                    message: 'Usuários encontrados com sucesso.',
+                    data: results
+                });
+            } else {
+                res.status(404).json({
+                    success: false,
+                    message: 'Nenhum usuário encontrado para esta igreja.'
+                });
+            }
+        }
+    });
+}
+
+
 async function login(req: Request, res: Response) {
     const { email, senha } = req.body;
 
@@ -285,9 +340,6 @@ async function putUser(req: Request, res: Response) {
     });
 }
 
-
-
-
 async function editChurchUser(req: Request, res: Response) {
     const userId: number = parseInt(req.body.id);
     const churchId: number = parseInt(req.body.id_igreja);
@@ -320,8 +372,6 @@ async function editChurchUser(req: Request, res: Response) {
     });
 }
 
-
-
 async function deleteUser(req: Request, res: Response) {
     const userId: number = parseInt(req.params.id);
     const churchId: number = parseInt(req.params.id_igreja);
@@ -346,12 +396,12 @@ export default {
     listNames,
     getUser,//ok
     editChurchUser,
+    getUsersBirthdays,
     listUsers,//ok
     getUsersByChurchId,//ok
     login,//ok
     createUsers,//ok
-    putUser,
-    // editUser,//ok
+    putUser,    
     deleteUser//ok
 }
 

@@ -1,20 +1,20 @@
-import React, { useState, useContext, useEffect } from 'react';
-import { View, Text, TextInput, Button, StyleSheet, TouchableOpacity, Alert, ScrollView } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { View, Text, TextInput, StyleSheet, TouchableOpacity, Alert, ScrollView } from 'react-native';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import moment from 'moment';
 import axios from 'axios';
-import { baseURL } from '../../../constants/url.js';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import RNPickerSelect from 'react-native-picker-select';
-import { AuthContext } from '../../context/auth.js';
+import { baseURL } from '../../../constants/url.js';
 
 const api = axios.create({
   baseURL,
 });
 
-const EventCreate = () => {
+const EventEdit = () => {
   const navigation = useNavigation();
-  const { user, churchData } = useContext(AuthContext);
+  const route = useRoute();
+  const { groupId } = route.params;
 
   const [error, setError] = useState(false);
   const [eventName, setEventName] = useState('');
@@ -28,11 +28,54 @@ const EventCreate = () => {
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
   const [isEndDatePickerVisible, setEndDatePickerVisibility] = useState(false);
   const [isTimePickerVisible, setTimePickerVisibility] = useState(false);
+  const [isEndTimePickerVisible, setEndTimePickerVisibility] = useState(false);
   const [isRecurring, setIsRecurring] = useState(false);
+  const [cancelSwitch, setCancelSwitch] = useState(false);
+
+  useEffect(() => {
+    if (groupId) {
+      fetchEventData();
+    }
+  }, [groupId]);
+
+  const fetchEventData = async () => {
+    try {
+      const response = await api.get(`events/groupRecurringEvents/${groupId}`);
+      const event = response.data.data[0]; // Ajuste para acessar os dados corretos
+
+      console.log(event);
+      setEventName(event.nome_evento);
+      setInitDate(event.data_inicio_Form);
+      setEndDate(event.data_fim_Form);
+      setHour(event.hora_inicio);
+      setEndHour(event.hora_fim);
+      setLocal(event.local);
+      setDetails(event.detalhes);
+      setRecurrence(event.recorrencia);
+      setCancelSwitch(event.ativo);
+
+    } catch (error) {
+      console.error('Erro ao buscar dados do evento:', error);
+      Alert.alert('Erro', 'Ocorreu um erro ao buscar os dados do evento. Por favor, tente novamente mais tarde.');
+    }
+  };
 
   useEffect(() => {
     checkRecurringEvents(moment(initDate, 'YYYY-MM-DD'), moment(endDate, 'YYYY-MM-DD'));
   }, [recurrence]);
+
+  const checkRecurringEvents = (startDate, endDate) => {
+    if (recurrence === 'diário' && startDate && endDate) {
+      const diffDays = moment(endDate, 'YYYY-MM-DD').diff(moment(startDate, 'YYYY-MM-DD'), 'days');
+      setIsRecurring(diffDays <= 30);
+    } else if (recurrence === 'semanal' && startDate && endDate) {
+      const diffDays = moment(endDate, 'YYYY-MM-DD').diff(moment(startDate, 'YYYY-MM-DD'), 'days');
+      const diffWeeks = diffDays / 7;
+      setIsRecurring(diffWeeks <= 26);
+    } else {
+      setIsRecurring(false);
+    }
+  };
 
   const handleDateConfirm = date => {
     const currentDate = moment().format('YYYY-MM-DD');
@@ -57,6 +100,7 @@ const EventCreate = () => {
   };
 
   const handleEndDateConfirm = date => {
+    const currentDate = moment().format('YYYY-MM-DD');
     const formattedDate = moment(date, 'YYYY-MM-DD', true).format('YYYY-MM-DD');
 
     if (moment(formattedDate).isSameOrAfter(initDate, 'day')) {
@@ -88,19 +132,6 @@ const EventCreate = () => {
     }
   };
 
-  const checkRecurringEvents = (startDate, endDate) => {
-    if (recurrence === 'diário' && startDate && endDate) {
-      const diffDays = moment(endDate, 'YYYY-MM-DD').diff(moment(startDate, 'YYYY-MM-DD'), 'days');
-      setIsRecurring(diffDays <= 30);
-    } else if (recurrence === 'semanal' && startDate && endDate) {
-      const diffDays = moment(endDate, 'YYYY-MM-DD').diff(moment(startDate, 'YYYY-MM-DD'), 'days');
-      const diffWeeks = diffDays / 7;
-      setIsRecurring(diffWeeks <= 26);
-    } else {
-      setIsRecurring(false);
-    }
-  };
-
   const handleInitTimeConfirm = time => {
     const selectedTime = moment(time).format('HH:mm');
     setHour(selectedTime);
@@ -110,7 +141,7 @@ const EventCreate = () => {
   const handleEndTimeConfirm = time => {
     const selectedTime = moment(time).format('HH:mm');
     setEndHour(selectedTime);
-    hideEndDatePicker();
+    hideEndTimePicker();
   };
 
   const showDatePicker = () => {
@@ -137,63 +168,99 @@ const EventCreate = () => {
     setTimePickerVisibility(false);
   };
 
-  const handleCreateEvent = async () => {
-    const currentDate = moment().format('YYYY-MM-DD');
+  const showEndTimePicker = () => {
+    setEndTimePickerVisibility(true);
+  };
 
-    if (
-      eventName &&
-      local &&
-      initDate &&
-      moment(initDate, 'YYYY-MM-DD', true).isValid() &&
-      moment(initDate, 'YYYY-MM-DD').isSameOrAfter(currentDate) &&
-      hour
-    ) {
-      try {
-        const response = await api.post('events', {
-          criado_por_id: user.id,
-          igreja_id: churchData.id,
-          nome_evento: eventName,
-          local: local,
-          data_inicio: moment(initDate, 'YYYY-MM-DD').format('YYYY-MM-DD'),
-          data_fim: endDate ? moment(endDate, 'YYYY-MM-DD').format('YYYY-MM-DD') : null,
-          hora_inicio: hour,
-          hora_fim: endHour || null,
-          detalhes: details,
-          recorrencia: recurrence,
-        });
-        console.log(response)
-        Alert.alert(
-          'Confirmação',
-          `Deseja criar o evento ${eventName} no dia ${initDate} às ${hour}?`,
-          [
-            {
-              text: 'Cancelar',
-              style: 'cancel',
-            },
-            {
-              text: 'OK',
-              onPress: () => {
-                console.log('Evento criado:', response.data);
-                navigation.goBack();
-              },
-            },
-          ]
-        );
-      } catch (error) {
-        console.error('Erro ao criar evento:', error);
-        Alert.alert('Erro', 'Ocorreu um erro ao criar o evento. Por favor, tente novamente mais tarde.');
+  const hideEndTimePicker = () => {
+    setEndTimePickerVisibility(false);
+  };
+
+  const handleUpdateEvent = async () => {
+    try {
+      // Verificar campos obrigatórios
+      if (!initDate || !endDate || !hour) {
+        Alert.alert('Erro de Validação', 'Por favor, preencha todos os campos obrigatórios.');
+        return;
       }
-    } else {
-      Alert.alert('Erro', 'Por favor, preencha todos os campos obrigatórios corretamente.');
+
+      // Formatar as datas no formato 'YYYY-MM-DD'
+      const formattedInitDate = moment(initDate, 'DD/MM/YYYY').format('YYYY-MM-DD');
+      const formattedEndDate = moment(endDate, 'DD/MM/YYYY').format('YYYY-MM-DD');
+
+      // Preparar os dados do evento atualizado
+      const updatedEvent = {
+        nome_evento: eventName,
+        local: local,
+        data_inicio: formattedInitDate,
+        data_fim: formattedEndDate,
+        hora_inicio: hour,
+        hora_fim: endHour || null,
+        recorrencia: recurrence,
+        detalhes: details,
+      };
+
+      console.log('Enviando dados do evento atualizado:', updatedEvent);
+
+      // Enviar solicitação de atualização ao servidor
+      const response = await api.put(`${baseURL}eventgroup/${groupId}`, updatedEvent);
+
+      console.log('Resposta do servidor:', response);
+
+      // Verificar o status da resposta
+      if (response.status === 200 && response.data.success) {
+        Alert.alert('Sucesso', response.data.message);
+        // Realizar outras ações necessárias após o sucesso
+      } else {
+        throw new Error(response.data.message || 'Resposta inesperada do servidor');
+      }
+
+    } catch (error) {
+      // Log detalhado do erro
+      console.error('Erro ao atualizar evento:', error.message, error.response ? error.response.data : '');
+
+      // Exibir mensagem de alerta de erro
+      Alert.alert('Erro', `Ocorreu um erro ao atualizar o evento. Por favor, tente novamente mais tarde. Detalhes: ${error.message}`);
     }
+  };
+
+  const handleDeleteEvent = async () => {
+    Alert.alert(
+      "Confirmação de Exclusão",
+      "Tem certeza que deseja excluir o evento? Esta ação é irreversível e o evento não poderá ser restaurado.",
+      [
+        {
+          text: "Cancelar",
+          onPress: () => console.log("Exclusão cancelada"),
+          style: "cancel"
+        },
+        {
+          text: "OK",
+          onPress: async () => {
+            try {
+              const response = await api.delete(`event/${groupId}`);
+              if (response.status === 200) {
+                Alert.alert("Sucesso", "Evento excluído com sucesso.");
+                navigation.goBack();
+              } else {
+                throw new Error("Erro ao excluir o evento.");
+              }
+            } catch (error) {
+              Alert.alert("Erro", "Ocorreu um erro ao excluir o evento. Por favor, tente novamente mais tarde.");
+            }
+          }
+        }
+      ]
+    );
   };
 
   return (
     <ScrollView style={styles.container}>
       <View style={styles.header}>
-        <Text style={styles.headerText}>Criar Evento</Text>
+        <Text style={styles.headerText}>Editar Evento <Text>{groupId}</Text></Text>
       </View>
       <View style={styles.containerInputs}>
+
         <Text style={styles.label}>Nome do Evento:</Text>
         <TextInput
           style={styles.input}
@@ -207,7 +274,7 @@ const EventCreate = () => {
           onChangeText={text => setLocal(text)}
         />
         <View style={styles.dateHour}>
-          <Text style={styles.label}>{recurrence !== null && recurrence !== '' ? 'Data de Início:' : 'Data do Evento:'}</Text>
+          <Text style={styles.label}>{recurrence !== null && recurrence !== '' ? 'Data do Evento:' : 'Data do Evento:'}</Text>
           <TouchableOpacity onPress={showDatePicker}>
             <TextInput
               style={[styles.input, styles.dateInput]}
@@ -215,7 +282,9 @@ const EventCreate = () => {
               editable={false}
             />
           </TouchableOpacity>
-          <Text style={styles.label}>Hora:</Text>
+        </View>
+        <View style={styles.dateHour}>
+          <Text style={styles.label}>Hora de Início:</Text>
           <TouchableOpacity onPress={showTimePicker}>
             <TextInput
               style={styles.input}
@@ -227,7 +296,7 @@ const EventCreate = () => {
         {recurrence !== null && recurrence !== 'Evento único' && (
           <View style={styles.dateHour}>
             <View>
-              <Text style={styles.label}>Data do Fim (Opcional):</Text>
+              <Text style={styles.label}>Data do Fim:</Text>
               <TouchableOpacity onPress={showEndDatePicker}>
                 <TextInput
                   style={[styles.input, styles.dateInput]}
@@ -237,8 +306,8 @@ const EventCreate = () => {
               </TouchableOpacity>
             </View>
             <View>
-              <Text style={styles.label}>Hora do Fim (Opcional):</Text>
-              <TouchableOpacity onPress={showTimePicker}>
+              <Text style={styles.label}>Hora do Fim:</Text>
+              <TouchableOpacity onPress={showEndTimePicker}>
                 <TextInput
                   style={styles.input}
                   value={endHour}
@@ -248,7 +317,6 @@ const EventCreate = () => {
             </View>
           </View>
         )}
-
         <Text style={styles.label}>Recorrência:</Text>
         <RNPickerSelect
           placeholder={{
@@ -278,7 +346,6 @@ const EventCreate = () => {
         {isRecurring && (
           <Text style={styles.recurringMessage}>Serão criados eventos entre as datas selecionadas</Text>
         )}
-
         <Text style={styles.label}>Detalhes do Evento:</Text>
         <TextInput
           style={styles.input}
@@ -302,10 +369,21 @@ const EventCreate = () => {
         <DateTimePickerModal
           isVisible={isTimePickerVisible}
           mode="time"
-          onConfirm={endDate ? handleEndTimeConfirm : handleInitTimeConfirm}
+          onConfirm={handleInitTimeConfirm}
           onCancel={hideTimePicker}
         />
-        <Button title="Criar Evento" onPress={handleCreateEvent} />
+        <DateTimePickerModal
+          isVisible={isEndTimePickerVisible}
+          mode="time"
+          onConfirm={handleEndTimeConfirm}
+          onCancel={hideEndTimePicker}
+        />
+        <TouchableOpacity style={[styles.button, styles.buttonUp]} onPress={handleUpdateEvent}>
+          <Text style={styles.buttonText}>Atualizar Evento</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={[styles.button, styles.buttonDel]} onPress={handleDeleteEvent}>
+          <Text style={styles.buttonText}>Excluir Evento</Text>
+        </TouchableOpacity>
       </View>
     </ScrollView>
   );
@@ -319,6 +397,17 @@ const styles = StyleSheet.create({
   label: {
     fontSize: 16,
     marginBottom: 5,
+    color: '#333',
+  },
+  inputInative: {
+    borderWidth: 1,
+    borderColor: '#ccc',
+    borderRadius: 5,
+    padding: 10,
+    marginBottom: 15,
+    color: 'black',
+    fontWeight: 'bold',
+    fontSize: 18,
     color: '#333',
   },
   header: {
@@ -365,11 +454,32 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
   },
+  dateHour: {
+    marginBottom: 15,
+  },
   switchContainer: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
   },
+  button: {
+    borderRadius: 5,
+    paddingVertical: 15,
+    paddingHorizontal: 20,
+    marginVertical: 10,
+    alignItems: 'center',
+  },
+  buttonUp: {
+    backgroundColor: '#007bff',
+  },
+  buttonDel: {
+    backgroundColor: '#dc3545',
+  },
+  buttonText: {
+    color: '#fff',
+    fontSize: 18,
+    fontWeight: 'bold',
+  },
 });
 
-export default EventCreate;
+export default EventEdit;

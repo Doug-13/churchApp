@@ -6,8 +6,8 @@ import presenceController from "../controller/presenceController";
 routes.get('/presence/:id_grupo',  presenceController.listPresence);
 
 //Cadastrar usuario
-// routes.post('/products/',productsController.createproducts);
-
+routes.post('/presence/meeting',presenceController.postPresence);
+routes.post('/presence/meeting/members',presenceController.postMembersVisitors);
 // //Editar usuario
 // routes.put('/product/:id',productsController.editproduct);
 

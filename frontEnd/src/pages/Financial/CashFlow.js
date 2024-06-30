@@ -3,7 +3,6 @@ import { Text, View, Button, TextInput, FlatList } from 'react-native';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import TransactionHistory from '../../pages/Financial/TransactionHistory';
 import FinancialReleases from '../../pages/Financial/FinancialReleases';
-
 import Balance from '../Financial/Balance';
 
 const Tab = createMaterialTopTabNavigator();

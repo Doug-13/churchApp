@@ -41,7 +41,12 @@ const GroupScreen = ({ navigation }) => {
       onPress={() => handleGroupPress(item.id_grupo)}
     >
       <Text style={styles.nome_grupo}>{item.nome_grupo}</Text>
-      <Text style={styles.members}>{item.members ? item.members.join(', ') : 'Nenhum membro'}</Text>
+      <Text style={styles.nome_lider}>
+        <Text style={styles.bold}>Líder:</Text> {item.nome_lider}
+      </Text>
+      <Text style={styles.descricao_grupo}>
+        <Text style={styles.bold}>Descrição do Grupo:</Text> {item.descricao_grupo}
+      </Text>
     </TouchableOpacity>
   );
 
@@ -54,7 +59,7 @@ const GroupScreen = ({ navigation }) => {
         keyExtractor={item => item.id_grupo.toString()} // Using ID as the unique key
         style={styles.flatList}
       />
-      <TouchableOpacity style={styles.addButton} onPress={() => navigation.navigate('MainTabNavigator')}>
+      <TouchableOpacity style={styles.addButton} onPress={() => navigation.navigate('InsertGroups')}>
         <AntDesign name="plus" size={24} color="white" />
       </TouchableOpacity>
     </View>
@@ -67,6 +72,9 @@ const styles = StyleSheet.create({
     backgroundColor: '#F0F0F0',
     paddingVertical: 20,
     paddingHorizontal: 15,
+  },
+  bold: {
+    fontWeight: 'bold',
   },
   header: {
     fontSize: 24,
@@ -95,7 +103,11 @@ const styles = StyleSheet.create({
     marginBottom: 5,
     color: '#333',
   },
-  members: {
+  nome_lider: {
+    fontSize: 16,
+    color: '#666',
+  },
+  descricao_grupo: {
     fontSize: 16,
     color: '#666',
   },

@@ -9,7 +9,7 @@ routes.get('/groups/grupo/:id_grupo',  groupsController.listGroup);
 routes.post('/groups/',groupsController.creategroups);
 
 //Editar usuario
-routes.put('/group/:id',groupsController.editgroup);
+routes.put('/groups/:id_grupo',groupsController.editgroup);
 
 //deletar usuario
 routes.delete('/group/:id',groupsController.deletegroup);

@@ -49,9 +49,41 @@ async function listvisitors(req: Request, res: Response) {
     );
 }
 
+
+async function listVisitorsGroups(req: Request, res: Response) {
+    const id_grupo = req.params.id_grupo;
+
+    db.connection.query(
+        `SELECT id,nome, whatsapp,visibilidade
+        FROM visitantes
+        WHERE id_grupo = ?
+        order by nome;`,
+        [id_grupo],
+        (err, results) => {
+            if (err) {
+                console.error("Erro ao listar visitantes:", err);
+                res.status(500).json({
+                    success: false,
+                    message: 'Erro ao listar visitantes.'
+                });
+            } else {
+                console.log(results);
+                res.json({
+                    success: true,
+                    message: 'Listagem realizada com sucesso.',
+                    data: results
+                });
+            }
+        }
+    );
+}
+
+
+
+
 async function listVisitorsDay(req: Request, res: Response) {
     const idIgreja = req.params.id_igreja;
-    
+
     db.connection.query(
         `SELECT Visitantes.*, RelatorioCulto.data
         FROM Visitantes
@@ -104,14 +136,53 @@ async function createvisitors(req: Request, res: Response) {
     });
 }
 
+async function createvisitorsGroups(req: Request, res: Response) {
+    const { id_grupo, nome, whatsapp } = req.body;
+
+    // Verifique se os campos obrigatórios estão preenchidos
+    if (!id_grupo || !nome || !whatsapp) {
+        return res.status(400).json({
+            success: false,
+            message: 'Todos os campos são obrigatórios.'
+        });
+    }
+
+    const querysql = 'INSERT INTO Visitantes (id_grupo, nome, whatsapp) VALUES (?, ?, ?)';
+    const params = [
+        id_grupo,
+        nome,
+        whatsapp
+    ];
+
+    db.connection.query(querysql, params, (err, results) => {
+        if (err) {
+            console.error("Erro ao criar visitante:", err);
+            res.status(500).json({
+                success: false,
+                message: 'Erro ao criar visitante.'
+            });
+        } else {
+            console.log(results);
+            res.json({
+                success: true,
+                message: 'Visitante criado com sucesso.',
+                data: results
+            });
+        }
+    });
+}
+
+
 async function editVisitor(req: Request, res: Response) {
     const id = req.params.id;
-    const querysql = `UPDATE Visitantes SET id_culto = ?, nome = ?, whatsapp = ? WHERE id = ?`;
+    const querysql = `UPDATE Visitantes SET nome = ?, whatsapp = ?, id_grupo = ?, visibilidade = ? WHERE id = ?`;
     const params = [
-        req.body.id_culto,
+
         req.body.nome,
         req.body.whatsapp,
-        id  // Adicione o id do visitante como último parâmetro
+        req.body.id_grupo,
+        req.body.visibilidade,
+        id
     ];
 
     try {
@@ -135,6 +206,7 @@ async function editVisitor(req: Request, res: Response) {
 
 
 
+
 async function deletevisitor(req: Request, res: Response) {
     const idUser = req.params.id;
     const querysql = 'delete from visitors WHERE id_visitor =?'
@@ -150,9 +222,11 @@ async function deletevisitor(req: Request, res: Response) {
 export default {
     // userVisitor,
     listvisitors,
+    listVisitorsGroups,
     listVisitorsDay,
     createvisitors,
+    createvisitorsGroups,
     editVisitor,
-    
+
     deletevisitor
 }

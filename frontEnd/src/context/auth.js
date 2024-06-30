@@ -13,9 +13,11 @@ export const AuthContext = createContext({});
 export default function AuthProvider({ children }) {
     const [user, setUser] = useState(null);
     const [churchData, setChurchData] = useState(null);
-    const [reports, setReports] = useState([]); // Novo estado para os relatórios
+    const [reports, setReports] = useState([]);
     const [loading, setLoading] = useState(false);
-    const [selectedGroupId, setSelectedGroupId] = useState(null); // Adicionando estado para o id_grupo selecionado
+    const [selectedGroupId, setSelectedGroupId] = useState(null);
+    const [selectedEventId, setSelectedEventId] = useState(null); // Novo estado para o id do evento selecionado
+    const [selectedGrouptId, setSelectedGrouptId] = useState(null); // Novo estado para o id do grupo selecionado
     const navigation = useNavigation();
 
     const updateUser = (userData) => {
@@ -27,7 +29,7 @@ export default function AuthProvider({ children }) {
     };
 
     const updateReports = (newReports) => {
-        console.log("Dados recebidos no contexto de autenticação:", newReports); // Mostrar dados recebidos
+        console.log("Dados recebidos no contexto de autenticação:", newReports);
         setReports(newReports);
     };
 
@@ -59,7 +61,6 @@ export default function AuthProvider({ children }) {
                 navigation.navigate("MainScreen");
             }
         } catch (error) {
-            // console.error('Erro durante o login:', error);
             if (axios.isAxiosError(error) && error.response && error.response.status === 401) {
                 Alert.alert('Erro', 'Email ou senha incorretos. Por favor, verifique suas credenciais e tente novamente.');
             } else {
@@ -135,12 +136,16 @@ export default function AuthProvider({ children }) {
 
     return (
         <AuthContext.Provider value={{
-            signed: !!user, //inserido para testes
+            signed: !!user,
             user,
             churchData,
             reports,
-            selectedGroupId, // Adicionando o id_grupo selecionado ao contexto
-            setSelectedGroupId, // Função para definir o id_grupo selecionado
+            selectedGroupId,
+            selectedEventId, // Passando o estado do id do evento selecionado
+            selectedGrouptId, // Passando o estado do id do grupo selecionado
+            setSelectedGroupId,
+            setSelectedEventId, // Passando a função para definir o id do evento selecionado
+            setSelectedGrouptId, // Passando a função para definir o id do grupo selecionado
             signIn: SignIn,
             handleChurchRegistrationSubmit,
             loading,

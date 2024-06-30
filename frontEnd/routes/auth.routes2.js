@@ -26,6 +26,12 @@ import CashFlow from '../src/pages/Financial/CashFlow';
 import MyContributions from '../src/pages/Financial/MyContributions';
 import TransactionHistory from '../src/pages/Financial/TransactionHistory';
 import MainTabNavigator from '../src/pages/Groups/MainTabNavigator';
+import Schedule from '../src/pages/Schedule';
+import EventCreate from '../src/pages/Schedule/eventCreate';
+import EventEdit from '../src/pages/Schedule/eventEdit';
+import EventGroupEdit from '../src/pages/Schedule/eventGroupEdit';
+import Permissions from '../src/pages/Permissions';
+import EditGroup from '../src/pages/Groups/editGroup';
 
 // import Drawer from './drawer';
 // import Balance from '../src/pages/Financial/Balance';
@@ -52,7 +58,26 @@ function AuthRoutes() {
                 component={Politics}
                 options={{ headerShown: false }}
             />
-
+            <AuthStack.Screen
+                name='Schedule'
+                component={Schedule}
+                options={{ headerShown: false }}
+            />
+            <AuthStack.Screen
+                name='EventCreate'
+                component={EventCreate}
+                options={{ headerShown: false }}
+            />
+            <AuthStack.Screen
+                name='EventEdit'
+                component={EventEdit}
+                options={{ headerShown: false }}
+            />
+            <AuthStack.Screen
+                name='EventGroupEdit'
+                component={EventGroupEdit}
+                options={{ headerShown: false }}
+            />
             <AuthStack.Screen
                 name="SignUp"
                 component={SignUp}
@@ -104,16 +129,16 @@ function AuthRoutes() {
                 component={TransactionHistory}
                 options={{ headerShown: false }}
             />
-             <AuthStack.Screen
+            <AuthStack.Screen
                 name='MainTabNavigator'
                 component={MainTabNavigator}
                 options={{ headerShown: false }}
             />
-            {/* <AuthStack.Screen
-                    name='Balance'
-                    component={Balance}
-                    options={{ headerShown: false }}
-                /> */}
+            <AuthStack.Screen
+                name='Permissions'
+                component={Permissions}
+                options={{ headerShown: false }}
+            />
             <AuthStack.Screen
                 name="Biblia"
                 component={Biblia}
@@ -158,6 +183,13 @@ function AuthRoutes() {
                 name='Groups'
                 component={Groups}
                 options={{ headerShown: false }}
+
+            />
+            <AuthStack.Screen
+                name='EditGroup'
+                component={EditGroup}
+                options={{ headerShown: false }}
+
             />
             <AuthStack.Screen
                 name='InsertGroups'

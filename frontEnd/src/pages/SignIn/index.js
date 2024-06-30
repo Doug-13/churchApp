@@ -4,12 +4,16 @@ import { useNavigation } from '@react-navigation/native';
 import { AuthContext } from '../../context/auth.js';
 import { Feather } from '@expo/vector-icons'; // Adicionando a importação do ícone Feather
 import axios from 'axios'; // Importando o Axios
+import PropTypes from 'deprecated-react-native-prop-types'; // Importe PropTypes do pacote deprecated-react-native-prop-types
+
 
 export default function SignIn() {
     const navigation = useNavigation();
-    const [email, setEmail] = useState('');
+    const [email, setEmail] = useState('');//Gio@mello
+    const [senha, setSenha] = useState('');//123
+    // const [email, setEmail] = useState('');
     const [showPassword, setShowPassword] = useState(false);
-    const [senha, setSenha] = useState('');
+    // const [senha, setSenha] = useState('123');
     const [loading, setLoading] = useState(false);
     const [refreshing, setRefreshing] = useState(false); // Estado para controlar o estado de atualização
     const { signIn } = useContext(AuthContext);

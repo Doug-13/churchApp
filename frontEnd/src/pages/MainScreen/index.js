@@ -6,7 +6,6 @@ import Events from '../Schedule/events.json';
 import { AuthContext } from '../../context/auth.js';
 import { StatusBar } from 'react-native';
 
-
 const windowHeight = Dimensions.get('window').height;
 
 export default function MainScreen() {
@@ -68,12 +67,12 @@ export default function MainScreen() {
               {/* Verifica se churchData está disponível antes de renderizar o nome da igreja */}
               <Text style={styles.churchName}>{churchData ? churchData.nome : 'Nome da Igreja Não Disponível'}</Text>
             </View>
-            <View style={styles.schedule}>
+            {/* <View style={styles.schedule}>
               <Text style={styles.scheduleTitle}>Agenda</Text>
             </View>
             <View style={styles.containerSchedule}>
 
-            </View>
+            </View> */}
           </View>
           <View style={styles.buttonsBlocks}>
             <View style={styles.containerBlocks}>

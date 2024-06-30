@@ -37,14 +37,17 @@ const MenuScreen = () => {
       case 'Studies':
         navigation.navigate('Studies');
         break;
-      case 'Profile': 
-        navigation.navigate('Profile'); 
+      case 'Profile':
+        navigation.navigate('Profile');
         break;
-        case 'Peoples': 
-        navigation.navigate('Peoples'); 
+      case 'Peoples':
+        navigation.navigate('Peoples');
         break;
-        case 'Fluxo de Caixa': 
-        navigation.navigate('Financial'); 
+        case 'Permissions':
+        navigation.navigate('Permissions');
+        break;
+      case 'Fluxo de Caixa':
+        navigation.navigate('Financial');
         break;
       default:
         break;
@@ -90,8 +93,20 @@ const MenuScreen = () => {
         >
           <Text style={[styles.menuText, selectedButton === 'Pessoas' && styles.selectedButtonText]}>Pessoas</Text>
         </TouchableOpacity>
+
+
+        <TouchableOpacity
+          style={[styles.menuItem, selectedButton === 'Permissões' && styles.selectedButton]}
+          onPress={() => handleButtonPress('Permissions')}
+        >
+          <Text style={[styles.menuText, selectedButton === 'Permissões' && styles.selectedButtonText]}>
+            Permissões
+          </Text>
+        </TouchableOpacity>
+
         {/* Criar botão de Equipes */}
         <TouchableOpacity
+
           style={[styles.menuItem, selectedButton === 'Equipes' && styles.selectedButton]}
           onPress={() => handleButtonPress('Equipes')}
         >
@@ -158,7 +173,7 @@ const MenuScreen = () => {
         <TouchableOpacity style={styles.logoutButton}>
           <Text style={styles.logoutText}>SAIR</Text>
         </TouchableOpacity>
-        </ScrollView>
+      </ScrollView>
     </Animatable.View>
   );
 };

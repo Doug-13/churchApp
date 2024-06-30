@@ -13,6 +13,7 @@ import churchRegistersRoutes from './routes/churchRegistersRoutes';
 import groupsRoutes from './routes/groupsRoutes';
 import pessoasGroupsRoutes from './routes/pessoasGroupsRoutes';
 import presenceRoutes from './routes/presenceRoutes';
+import eventsRoutes from './routes/eventsRoutes';
 
 app.use('/api/', churchRegistersRoutes);
 app.use('/api/', churchReportsRoutes);
@@ -22,5 +23,6 @@ app.use('/api/', usersRoutes);
 app.use('/api/', groupsRoutes);
 app.use('/api/', pessoasGroupsRoutes);
 app.use('/api/', presenceRoutes);
+app.use('/api/', eventsRoutes);
 
 export default app;
