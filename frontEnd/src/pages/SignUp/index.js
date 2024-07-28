@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { StatusBar, Alert, SafeAreaView, ActivityIndicator } from 'react-native'; // Adicionado SafeAreaView e ActivityIndicator
-import { Platform, KeyboardAvoidingView, View, Text, TouchableOpacity, TextInput, Image, ScrollView, StyleSheet } from 'react-native';
+import { StatusBar, Alert, SafeAreaView, ActivityIndicator, TouchableOpacity, Platform, View, Text, TextInput, Image, ScrollView, StyleSheet, KeyboardAvoidingView, Modal } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import CheckBox from '../../components/CheckBox2/index';
 import * as Animatable from 'react-native-animatable';
 import { Feather } from '@expo/vector-icons';
 import axios from 'axios';
 import { baseURL } from '../../../constants/url.js';
+import * as ImagePicker from 'expo-image-picker';
 
 const api = axios.create({
     baseURL,
@@ -19,7 +19,8 @@ export default function SignUp() {
         email: '',
         senha: '',
         confirmarSenha: '',
-        telefone: ''
+        telefone: '',
+        fotoPerfil: null
     });
 
     const [optionsMultiple, setOptionsMultiple] = useState([]);
@@ -28,20 +29,22 @@ export default function SignUp() {
     const [passwordsMatch, setPasswordsMatch] = useState(true);
     const [formReady, setFormReady] = useState(false);
     const [loading, setLoading] = useState(false);
+    const [termsAccepted, setTermsAccepted] = useState(false);
+    const [showPhotoOptions, setShowPhotoOptions] = useState(false);
     const navigation = useNavigation();
 
     useEffect(() => {
         setPasswordsMatch(formData.senha === formData.confirmarSenha);
         validateForm();
-    }, [formData.senha, formData.confirmarSenha]);
+    }, [formData.senha, formData.confirmarSenha, formData.nome, formData.sobrenome, formData.email, formData.telefone, termsAccepted, formData.fotoPerfil]);
 
     useEffect(() => {
         CheckBoxPage();
-    }, []); // Chama uma vez quando o componente é montado
+    }, []);
 
     const handleChange = (name, value) => {
         setFormData({ ...formData, [name]: value });
-        validateForm(); // Validar o formulário após a mudança de um campo
+        validateForm();
     };
 
     const handlePhoneChange = (value) => {
@@ -51,7 +54,7 @@ export default function SignUp() {
                 ...prevState,
                 telefone: formattedPhone
             }));
-            validateForm(); // Validar o formulário após a mudança do número de telefone
+            validateForm();
         }
     };
 
@@ -64,11 +67,11 @@ export default function SignUp() {
     };
 
     const validateForm = () => {
-        const { nome, sobrenome, email, senha, confirmarSenha, telefone } = formData;
-        const passwordsMatch = senha === confirmarSenha; // Verificar se as senhas coincidem
-        const isFormValid = nome.trim() !== '' && sobrenome.trim() !== '' && email.trim() !== '' && senha.trim() !== '' && confirmarSenha.trim() !== '' && telefone.trim() !== '';
-        setPasswordsMatch(passwordsMatch); // Atualizar o estado de senhas coincidentes
-        setFormReady(isFormValid && passwordsMatch);
+        const { nome, sobrenome, email, senha, confirmarSenha, telefone, fotoPerfil } = formData;
+        const passwordsMatch = senha === confirmarSenha;
+        const isFormValid = nome.trim() !== '' && sobrenome.trim() !== '' && email.trim() !== '' && senha.trim() !== '' && confirmarSenha.trim() !== '' && telefone.trim() !== '' && fotoPerfil !== null;
+        setPasswordsMatch(passwordsMatch);
+        setFormReady(isFormValid && passwordsMatch && termsAccepted);
     };
 
     const formatPhoneNumber = (input) => {
@@ -76,14 +79,13 @@ export default function SignUp() {
         const formatted = cleaned.replace(/(\d{2})(\d{8,9})/, '($1) $2');
         return formatted;
     };
-    // 192.168.1.103;
+
     const handleSubmit = async () => {
-        setLoading(true); // Definir loading como true durante a submissão
+        setLoading(true);
         const { confirmarSenha, ...dataToSend } = formData;
         console.log('Dados enviados para o banco:', dataToSend);
         try {
             const response = await api.post(baseURL + '/users/', dataToSend);
-            // const response = await axios.post(baseURL + 'users/', dataToSend);
             console.log('Resposta do servidor:', response.data);
             Alert.alert(
                 'Cadastro realizado com sucesso',
@@ -93,7 +95,7 @@ export default function SignUp() {
                         text: 'OK',
                         onPress: () => {
                             console.log("Botão OK pressionado");
-                            navigation.goBack(); // Voltar para a página anterior
+                            navigation.goBack();
                         }
                     }
                 ],
@@ -102,22 +104,11 @@ export default function SignUp() {
         } catch (error) {
             console.error('Erro ao enviar dados:', error);
         } finally {
-            setLoading(false); // Definir loading como false após a submissão, independentemente do resultado
+            setLoading(false);
         }
     };
 
     const CheckBoxPage = () => {
-        // Função para navegar para a página de termos e condições
-        const navigateToTermsAndConditions = () => {
-            navigation.navigate('TermosCondicoes');
-        };
-
-        // Função para navegar para a página de política de privacidade
-        const navigateToPrivacyPolicy = () => {
-            navigation.navigate('PoliticaPrivacidade');
-        };
-
-        // Definindo as opções do CheckBox
         setOptionsMultiple([
             {
                 text: (
@@ -138,6 +129,67 @@ export default function SignUp() {
         ]);
     };
 
+    const handleCheckBoxChange = (selectedOptions) => {
+        setTermsAccepted(selectedOptions.length === 2);
+    };
+
+    const pickImage = async () => {
+        const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
+        if (status !== 'granted') {
+            Alert.alert('Permissão necessária', 'Precisamos de permissão para acessar a galeria.');
+            return;
+        }
+
+        let result = await ImagePicker.launchImageLibraryAsync({
+            mediaTypes: ImagePicker.MediaTypeOptions.All,
+            allowsEditing: true,
+            aspect: [3, 3],
+            quality: 1,
+        });
+
+        if (!result.canceled) {
+            setFormData(prevState => ({
+                ...prevState,
+                fotoPerfil: result.assets[0].uri,
+            }));
+            setShowPhotoOptions(false);
+        }
+    };
+
+    const removePhoto = () => {
+        setFormData(prevState => ({
+            ...prevState,
+            fotoPerfil: null,
+        }));
+        setShowPhotoOptions(false);
+    };
+
+    const takePhoto = async () => {
+        const { status } = await ImagePicker.requestCameraPermissionsAsync();
+        if (status !== 'granted') {
+            Alert.alert('Permissão necessária', 'Precisamos de permissão para acessar a câmera.');
+            return;
+        }
+
+        const result = await ImagePicker.launchCameraAsync({
+            allowsEditing: true,
+            aspect: [3, 3],
+            quality: 1,
+        });
+
+        if (!result.canceled) {
+            setFormData(prevState => ({
+                ...prevState,
+                fotoPerfil: result.assets[0].uri
+            }));
+            setShowPhotoOptions(false);
+        }
+    };
+
+    const handlePhotoClick = () => {
+        setShowPhotoOptions(true);
+    };
+
     return (
         <KeyboardAvoidingView
             style={styles.container}
@@ -148,12 +200,55 @@ export default function SignUp() {
                 <View style={styles.innerContainer}>
                     <Animatable.View animation='fadeInLeft' delay={500} style={styles.containerHeader}>
                         <View style={styles.imageContainer}>
-                            <Image
-                                source={require('../../../assets/Logo.png')}
-                                style={styles.image}
-                                resizeMode="contain"
-                            />
+                            {formData.fotoPerfil ? (
+                                <Image
+                                    source={{ uri: formData.fotoPerfil }}
+                                    style={styles.image}
+                                    resizeMode="contain"
+                                />
+                            ) : (
+                                <Text style={styles.imageText}>Adicione sua foto</Text>
+                            )}
+                            <TouchableOpacity
+                                style={styles.cameraIcon}
+                                onPress={handlePhotoClick}
+                            >
+                                <Feather name="camera" size={30} color="#fff" />
+                            </TouchableOpacity>
                         </View>
+
+                        <Modal
+                            transparent={true}
+                            visible={showPhotoOptions}
+                            animationType="slide"
+                            onRequestClose={() => setShowPhotoOptions(false)}
+                        >
+                            <View style={styles.modalContainer}>
+                                <View style={styles.modalContent}>
+                                    <TouchableOpacity 
+                                        style={styles.closeButton} 
+                                        onPress={() => setShowPhotoOptions(false)}
+                                    >
+                                        <Feather name="x" size={24} color="#000" />
+                                    </TouchableOpacity>
+                                    <Text style={styles.modalText}>Foto de Perfil</Text>
+                                    <View style={styles.iconButtonContainer}>
+                                        <TouchableOpacity onPress={pickImage} style={styles.iconButton}>
+                                            <Feather name="image" size={40} color="#000" />
+                                            <Text style={styles.iconLabel}>Galeria</Text>
+                                        </TouchableOpacity>
+                                        <TouchableOpacity onPress={takePhoto} style={styles.iconButton}>
+                                            <Feather name="camera" size={40} color="#000" />
+                                            <Text style={styles.iconLabel}>Câmera</Text>
+                                        </TouchableOpacity>
+                                        <TouchableOpacity onPress={removePhoto} style={styles.iconButton}>
+                                            <Feather name="trash-2" size={40} color="#000" />
+                                            <Text style={styles.iconLabel}>Remover Foto</Text>
+                                        </TouchableOpacity>
+                                    </View>
+                                </View>
+                            </View>
+                        </Modal>
                     </Animatable.View>
 
                     <Animatable.View animation='fadeInUp' delay={500} style={styles.containerForm}>
@@ -163,21 +258,22 @@ export default function SignUp() {
                         <Text style={styles.title}>Nome</Text>
                         <TextInput
                             placeholder="Digite seu nome..."
-                            style={[styles.input, !formData.nome.trim() && styles.errorInput]} // Adicionando estilo de erro se o campo estiver vazio
+                            style={[styles.input, !formData.nome.trim() && styles.errorInput]}
                             onChangeText={(text) => handleChange('nome', text)}
                         />
 
                         <Text style={styles.title}>Sobrenome</Text>
                         <TextInput
                             placeholder="Digite seu sobrenome..."
-                            style={[styles.input, !formData.sobrenome.trim() && styles.errorInput]} // Adicionando estilo de erro se o campo estiver vazio
+                            style={[styles.input, !formData.sobrenome.trim() && styles.errorInput]}
                             onChangeText={(text) => handleChange('sobrenome', text)}
                         />
 
                         <Text style={styles.title}>Email</Text>
                         <TextInput
-                            placeholder="Digite seu E-mail..."
-                            style={[styles.input, !formData.email.trim() && styles.errorInput]} // Adicionando estilo de erro se o campo estiver vazio
+                            placeholder="Digite seu email..."
+                            keyboardType="email-address"
+                            style={[styles.input, !formData.email.trim() && styles.errorInput]}
                             onChangeText={(text) => handleChange('email', text)}
                         />
 
@@ -186,7 +282,7 @@ export default function SignUp() {
                             <TextInput
                                 secureTextEntry={!showPassword}
                                 placeholder="Digite sua senha..."
-                                style={[styles.passwordInput, !formData.senha.trim() && styles.errorInput]} // Adicionando estilo de erro se o campo estiver vazio
+                                style={[styles.passwordInput, !formData.senha.trim() && styles.errorInput]}
                                 onChangeText={(text) => handleChange('senha', text)}
                             />
                             <TouchableOpacity onPress={toggleShowPassword} style={styles.togglePasswordButton}>
@@ -199,7 +295,7 @@ export default function SignUp() {
                             <TextInput
                                 secureTextEntry={!showConfirmPassword}
                                 placeholder="Digite sua senha..."
-                                style={[styles.passwordInput, !formData.confirmarSenha.trim() && styles.errorInput]} // Adicionando estilo de erro se o campo estiver vazio
+                                style={[styles.passwordInput, !formData.confirmarSenha.trim() && styles.errorInput]}
                                 onChangeText={(text) => handleChange('confirmarSenha', text)}
                             />
                             <TouchableOpacity onPress={toggleShowConfirmPassword} style={styles.togglePasswordButton}>
@@ -214,16 +310,13 @@ export default function SignUp() {
                         <Text style={styles.title}>Telefone</Text>
                         <TextInput
                             placeholder="(xx) xxxxxxxxx"
-                            style={[styles.input, !formData.telefone.trim() && styles.errorInput]} // Adicionando estilo de erro se o campo estiver vazio
+                            style={[styles.input, !formData.telefone.trim() && styles.errorInput]}
                             onChangeText={handlePhoneChange}
                             value={formData.telefone}
                         />
 
-                        <TouchableOpacity onPress={() => navigation.navigate('TermosCondicoes')}>
-                            <Text style={styles.linkText}>Termos e Condições</Text>
-                        </TouchableOpacity>
                         <SafeAreaView style={styles.containerBox}>
-                            <CheckBox options={optionsMultiple} onChange={(op) => console.log(op)} />
+                            <CheckBox options={optionsMultiple} onChange={handleCheckBoxChange} />
                         </SafeAreaView>
 
                         <TouchableOpacity
@@ -242,8 +335,6 @@ export default function SignUp() {
             </ScrollView>
         </KeyboardAvoidingView>
     );
-
-
 }
 
 const styles = StyleSheet.create({
@@ -268,17 +359,49 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     imageContainer: {
-        width: 200,
-        height: 120,
-        borderRadius: 20,
+        width: 150,
+        height: 150,
+        borderRadius: 100,
         justifyContent: 'center',
         alignItems: 'center',
         marginBottom: 20,
+        backgroundColor: '#e0e0e0',
+        borderWidth: 1,
+        borderColor: '#ccc',
+        position: 'relative',
     },
     image: {
         width: '100%',
         height: '100%',
-        borderRadius: 20,
+        borderRadius: 100,
+    },
+    imageText: {
+        color: '#555',
+        fontSize: 16,
+    },
+    cameraIcon: {
+        position: 'absolute',
+        top: 105,
+        right: 5,
+        backgroundColor: 'rgba(0,0,0,0.5)',
+        borderRadius: 50,
+        padding: 10,
+    },
+    buttonContainer: {
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        width: '100%',
+    },
+    imageButton: {
+        backgroundColor: '#000',
+        paddingVertical: 10,
+        paddingHorizontal: 20,
+        borderRadius: 5,
+        margin: 5,
+    },
+    buttonText: {
+        color: '#fff',
+        fontSize: 16,
     },
     containerForm: {
         backgroundColor: '#fff',
@@ -308,6 +431,12 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center'
     },
+    linkText: {
+        color: '#1E90FF',
+        textDecorationLine: 'underline',
+        fontWeight: 'bold',
+        marginTop: 15,
+    },
     buttonText: {
         fontSize: 18,
         color: '#ffff',
@@ -330,5 +459,54 @@ const styles = StyleSheet.create({
         marginTop: 20,
         backgroundColor: '#fff',
     },
-
+    errorInput: {
+        borderColor: 'red',
+    },
+    errorMessage: {
+        color: 'red',
+        marginBottom: 10,
+    },
+    modalContainer: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: 'rgba(0,0,0,0.5)',
+    },
+    modalContent: {
+        width: '80%',
+        backgroundColor: 'white',
+        borderRadius: 10,
+        paddingVertical: 20,
+        paddingHorizontal: 15,
+        alignItems: 'center',
+    },
+    modalText: {
+        fontSize: 20,
+        fontWeight: 'bold',
+        marginBottom: 18,
+        textAlign: 'center',
+    },
+    iconButtonContainer: {
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        alignItems: 'center',
+        width: '100%',
+    },
+    iconButton: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        paddingVertical: 10,
+        marginHorizontal: 10,
+    },
+    iconLabel: {
+        marginTop: 5,
+        fontSize: 14,
+        textAlign: 'center',
+    },
+    closeButton: {
+        position: 'absolute',
+        top: 10,
+        right: 10,
+        padding: 10,
+    },
 });

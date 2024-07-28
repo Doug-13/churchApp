@@ -41,6 +41,8 @@ npm start -- --reset-cache
  - https://www.npmjs.com/package/react-native-pell-rich-editor
  - https://www.geeksforgeeks.org/create-a-text-editor-app-using-react-native/
 
+Estudar  MVVM
+
 
  ### thunder Client
 

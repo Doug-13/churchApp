@@ -6,7 +6,7 @@
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
-    "scheme": ["churchapp"],
+    "scheme": "churchapp",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
@@ -16,13 +16,19 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "googleServicesFile": "./GoogleService-Info.plist",
+      "bundleIdentifier": "com.ChurchApp.churchApp",
+      "buildNumber": "1"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
+      "googleServicesFile": "./google-services.json",
+      "package": "com.Church.ChurchApp",
+      "versionCode": 1,
       "permissions": [
         "CAMERA",
         "READ_EXTERNAL_STORAGE",
@@ -33,14 +39,42 @@
       "favicon": "./assets/favicon.png"
     },
     "plugins": [
+      "expo-image-picker",
       [
-        "expo-image-picker",
+        "@react-native-firebase/app",
         {
-          "photosPermission": "The app accesses your photos to let you share them with your friends."
+          "ios": {
+            "useFrameworks": "static"
+          }
         }
       ],
+      [
+        "@react-native-firebase/auth",
+        {
+          "ios": {
+            "useFrameworks": "static"
+          }
+        }
+      ],
+      [
+        "@react-native-firebase/crashlytics",
+        {
+          "ios": {
+            "useFrameworks": "static"
+          }
+        }
+      ],
+     
       "expo-localization",
-      "expo-font"
+      "expo-font",
+      [
+        "expo-build-properties",
+        {
+          "ios": {
+            "useFrameworks": "static"
+          }
+        }
+      ]
     ]
   }
 }

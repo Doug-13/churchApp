@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import db from '../config/database';
 import { RowDataPacket } from 'mysql2';
+// import { Multer } from "multer";
 
 interface users {
     id: number;
@@ -25,6 +26,58 @@ interface users {
     Instagram: string,
     WhatsApp: string;
 }
+
+
+export async function createUserProfile(req: Request, res: Response) {
+    console.log("Dados Recebidos:", req.body);
+    try {
+        // Verifica se o arquivo foi carregado corretamente
+        const fotoUrl = req.file ? `expo/images/profile/${req.file.filename}` : null;
+        console.log("URL da foto:", fotoUrl); // Log para depuração
+
+        // Consulta SQL para inserir o novo usuário
+        const querysql = `
+            INSERT INTO USERS 
+            (nome, sobrenome, email, senha, telefone, foto_url, data_cadastro, data_modificacao) 
+            VALUES (?, ?, ?, ?, ?, ?, NOW(), NOW());
+        `;
+
+        // Parâmetros da consulta
+        const params = [
+            req.body.nome,
+            req.body.sobrenome,
+            req.body.email,
+            req.body.senha,
+            req.body.telefone,
+            fotoUrl,
+        ];
+
+        // Executa a consulta SQL
+        db.connection.query(querysql, params, (err, results) => {
+            if (err) {
+                console.error('Erro ao criar cliente:', err);
+                res.status(500).json({
+                    success: false,
+                    message: 'Erro ao criar usuário.',
+                });
+            } else {
+                console.log('Cadastro Realizado com Sucesso');
+                res.status(200).json({
+                    success: true,
+                    message: 'Cadastro Realizado com Sucesso',
+                });
+            }
+        });
+    } catch (error) {
+        console.error('Erro ao processar solicitação:', error);
+        res.status(500).json({
+            success: false,
+            message: 'Erro ao processar solicitação.',
+        });
+    }
+}
+
+
 
 // Chamar função para mostrar usuários (GET)
 async function listUsers(req: Request, res: Response) {
@@ -236,6 +289,7 @@ async function login(req: Request, res: Response) {
     });
 }
 
+
 async function createUsers(req: Request, res: Response) {
     const querysql = `
         INSERT INTO USERS 
@@ -271,7 +325,7 @@ async function createUsers(req: Request, res: Response) {
             console.error("Erro ao criar cliente:", err);
             res.status(500).json({
                 success: false,
-                message: 'Ussuário já cadastrado!.'
+                message: 'Usuário já cadastrado!.'
             });
         } else {
             console.log("Cadastro Realizado com Sucesso");
@@ -393,6 +447,7 @@ async function deleteUser(req: Request, res: Response) {
 
 export default {
     getUsersById,//ok
+    createUserProfile,
     listNames,
     getUser,//ok
     editChurchUser,

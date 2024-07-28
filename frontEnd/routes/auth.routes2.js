@@ -48,6 +48,7 @@ function AuthRoutes() {
                 component={SignIn}
                 options={{ headerShown: false }}
             />
+            
             <AuthStack.Screen
                 name='Condicoes'
                 component={Condicoes}

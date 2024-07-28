@@ -1,6 +1,6 @@
 import express from 'express';
 import usersController from '../controller/usersController';
-
+import multer from 'multer';
 const routes = express.Router();
 
 // Rotas para usuários
@@ -13,6 +13,7 @@ routes.get('/users/birthday/church/:id_igreja', usersController.getUsersBirthday
 
 routes.post('/users/login', usersController.login);
 routes.post('/users', usersController.createUsers);
+routes.post('/user/profile', usersController.createUserProfile);
 
 routes.post('/user/:id', usersController.editChurchUser);
 

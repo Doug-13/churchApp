@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "741432882842",
+    "project_id": "churchapp-eda88",
+    "storage_bucket": "churchapp-eda88.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:741432882842:android:1d2e6aa4f7dc3b2b20d123",
+        "android_client_info": {
+          "package_name": "com.Church.ChurchApp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBZFLuwL3vMcu5Tcb-PautsWKUPo2FWgcs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
