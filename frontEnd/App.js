@@ -5,7 +5,7 @@ import { StatusBar } from 'react-native';
 import Routes from './routes/auth.routes2'; // Ensure this path is correct
 import AuthProvider from './src/context/auth'; // Ensure this path is correct
 
-import firebaseConnection from '../src/firebase/firebaseConnection';
+// import firebaseConnection from '../src/firebase/firebaseConnection';
 
 export default function App() {
   return (
