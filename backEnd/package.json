@@ -22,6 +22,7 @@
     "express": "^4.18.2",
     "multer": "^1.4.5-lts.1",
     "mysql2": "^3.5.2",
+    "nodeapitsmysql": "file:",
     "nodemon": "^3.0.1",
     "ts-node": "^10.9.1",
     "typescript": "^5.1.6"
