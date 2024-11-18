@@ -50,7 +50,7 @@ export default function MainScreen() {
           </TouchableOpacity>
           <Text style={styles.menuText}>Olá {userName},</Text>
           <Image
-            source={require('../../../assets/download.jpeg')} // Insira o caminho para a imagem do perfil
+            // source={require('../../../assets/download.jpeg')} // Insira o caminho para a imagem do perfil
             style={styles.profileImage}
           />
         </View>
@@ -58,7 +58,7 @@ export default function MainScreen() {
           <View style={styles.boxContainer}></View>
           <View style={styles.containerForm}>
             <Image
-              source={require('../../../assets/Mevam.jpg')}
+              // source={require('../../../assets/Mevam.jpg')}
               style={styles.image}
               resizeMode="contain"
             />
