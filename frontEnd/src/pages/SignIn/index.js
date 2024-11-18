@@ -2,57 +2,58 @@ import React, { useState, useContext } from 'react';
 import { StatusBar, ActivityIndicator, KeyboardAvoidingView, View, Text, TouchableOpacity, TextInput, Image, StyleSheet, Platform, ScrollView, RefreshControl } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { AuthContext } from '../../context/auth.js';
-import { Feather } from '@expo/vector-icons'; // Adicionando a importação do ícone Feather
-import axios from 'axios'; // Importando o Axios
-import PropTypes from 'deprecated-react-native-prop-types'; // Importe PropTypes do pacote deprecated-react-native-prop-types
-
+import { Feather } from '@expo/vector-icons';
+import axios from 'axios';
 
 export default function SignIn() {
     const navigation = useNavigation();
-    const [email, setEmail] = useState('');//Gio@mello
-    const [senha, setSenha] = useState('');//123
-    // const [email, setEmail] = useState('');
+    const [email, setEmail] = useState('');
+    const [senha, setSenha] = useState('');
     const [showPassword, setShowPassword] = useState(false);
-    // const [senha, setSenha] = useState('123');
     const [loading, setLoading] = useState(false);
-    const [refreshing, setRefreshing] = useState(false); // Estado para controlar o estado de atualização
+    const [refreshing, setRefreshing] = useState(false);
     const { signIn } = useContext(AuthContext);
 
-    // Função para alternar a visibilidade da senha
     const toggleShowPassword = () => {
         setShowPassword(!showPassword);
     };
 
     const handleLogin = async () => {
-        if (email !== '' && senha !== '') {
-            setLoading(true);
-            try {
-                await signIn(email, senha);
-            } catch (error) {
-                console.error('Erro durante o login:', error);
-                console.log('Tipo de erro:', typeof error); // Tipo de erro
-                if (axios.isAxiosError(error) && error.response) {
-                    console.log('Status da resposta:', error.response.status); // Adicionando este console.log para verificar o status da resposta
-                    if (error.response.status === 401) {
-                        alert('Email ou senha incorretos. Por favor, verifique suas credenciais e tente novamente.');
-                    } else {
-                        alert('Ocorreu um erro durante o login. Por favor, tente novamente.'); // Alerta de erro
-                    }
-                } else {
-                    alert('Ocorreu um erro durante o login. Por favor, tente novamente.'); // Alerta de erro
-                }
-            } finally {
-                setLoading(false);
-            }
-        } else {
+        if (!email || !senha) {
             alert('Por favor, preencha todos os campos.');
+            return;
+        }
+
+        // Simple email validation
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+            alert('Por favor, insira um e-mail válido.');
+            return;
+        }
+
+        setLoading(true);
+        try {
+            await signIn(email, senha);
+        } catch (error) {
+            console.error('Erro durante o login:', error);
+            if (axios.isAxiosError(error) && error.response) {
+                if (error.response.status === 401) {
+                    alert('Email ou senha incorretos. Por favor, verifique suas credenciais e tente novamente.');
+                } else {
+                    alert('Ocorreu um erro durante o login. Por favor, tente novamente.');
+                }
+            } else {
+                alert('Ocorreu um erro durante o login. Por favor, tente novamente.');
+            }
+        } finally {
+            setLoading(false);
         }
     };
 
     const onRefresh = () => {
         setRefreshing(true);
-        // Limpar os campos de email e senha
-        // setEmail('');
+        // Clear fields
+        setEmail('');
         setSenha('');
         setRefreshing(false);
     };
@@ -67,10 +68,7 @@ export default function SignIn() {
                 contentContainerStyle={{ flexGrow: 1 }}
                 keyboardShouldPersistTaps="handled"
                 refreshControl={
-                    <RefreshControl
-                        refreshing={refreshing}
-                        onRefresh={onRefresh}
-                    />
+                    <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
                 }
             >
                 <View style={styles.containerHeader}>
@@ -93,6 +91,7 @@ export default function SignIn() {
                         style={styles.input}
                         value={email}
                         onChangeText={setEmail}
+                        accessibilityLabel="Email input"
                     />
 
                     <Text style={styles.title}>Senha</Text>
@@ -103,6 +102,7 @@ export default function SignIn() {
                             style={[styles.input, styles.passwordInput]}
                             value={senha}
                             onChangeText={setSenha}
+                            accessibilityLabel="Password input"
                         />
                         <TouchableOpacity onPress={toggleShowPassword} style={styles.togglePasswordButton}>
                             <Feather name={showPassword ? 'eye' : 'eye-off'} size={24} color="black" />
@@ -166,7 +166,6 @@ const styles = StyleSheet.create({
         borderTopRightRadius: 18,
         paddingStart: '5%',
         paddingEnd: '5%',
-        position: 'relative', // Para posicionar o ícone de olho
     },
     title: {
         fontSize: 20,
@@ -174,7 +173,7 @@ const styles = StyleSheet.create({
     },
     input: {
         borderBottomWidth: 1,
-        height: 30,
+        height: 40,
         marginBottom: 10,
         fontSize: 16,
     },
@@ -203,17 +202,13 @@ const styles = StyleSheet.create({
     },
     togglePasswordButton: {
         paddingEnd: 10,
-        position: 'absolute', // Posiciona o ícone absolutamente
-        right: 0, // Posiciona o ícone no canto direito do contêiner pai
-        top: 0, // Posiciona o ícone no topo do contêiner pai
+        position: 'absolute',
+        right: 0,
+      top: 0,
     },
     passwordInputContainer: {
-        flexDirection: 'row',
-        alignItems: 'center',
-
+      flexDirection: 'row',
+      alignItems: 'center',
+      marginBottom: 10
     },
-    passwordInput: {
-        flex: 1,
-    },
-
 });
